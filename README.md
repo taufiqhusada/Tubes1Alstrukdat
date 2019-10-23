@@ -3,10 +3,10 @@ Tugas Besar 1 Alstrukdat
 
 # Rincian Tugas
 1. ADT Bangunan
-a. properti 
+A. properti 
 - tipe bentukan sesuaikan dengan spek
-b. fungsi menaikkan level
-c. Adt pendukung
+B. fungsi menaikkan level
+C. Adt pendukung
 - list linier untuk menyimpan semua bangunan milik player tertentu
 - array implisit untuk menyimpan semua bangunan
 
