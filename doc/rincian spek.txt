@@ -24,7 +24,6 @@ b. adt pendukung
 - mesin kata untuk baca peta
 - graph untuk keterhubungan bangunan
 
-5. Main program
 
 
 
