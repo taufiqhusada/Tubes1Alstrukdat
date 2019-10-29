@@ -74,6 +74,6 @@ void TulisMATRIKS (MATRIKS M);
 8 9 10
 */
 
-void TampilkanPeta(TBangunan tab, int mapHeight, int mapWidth);
+
 
 #endif

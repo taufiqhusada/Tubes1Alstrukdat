@@ -116,11 +116,3 @@ void TulisMATRIKS (MATRIKS M){
 4 5 6
 8 9 10
 */
-
-void TampilkanPeta(TBangunan tab, int mapHeight, int mapWidth){
-    int i;
-    for (i = 1; i<=mapWidth+1; ++i){
-        printf("*");
-    }
-
-}
