@@ -21,6 +21,8 @@ typedef struct {
     int M;          // nilai maks penambahan
     boolean P;      // pertahanan
     int U;          // pasukan awal untuk menjadikan bangunan ini milik pemain
+    int absis;      // letak absis
+    int ordinat;    // letak ordinat
 } BANGUNAN;
 
 /* ***** ARRAY BANGUNAN ***** */
@@ -41,6 +43,9 @@ typedef struct {
 #define U(B) (B).U
 // array
 #define Bgn(T, i) (T).TB[(i)]
+// letak
+#define absis(B) (B).absis
+#define ordinat(B) (B).ordinat
 
 /* ***** SET UP ***** */
 void CreateBangunan(BANGUNAN *B);
