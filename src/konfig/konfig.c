@@ -19,13 +19,13 @@
 #include "boolean.h"
 #include "mesinkar.h"
 #include "mesintoken.h"
-// #include "bangunan.h"
+#include "../bangunan/bangunan.h"
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
 Token CToken;
 int mapheight, mapwidth, B;
-// TBangunan TB;
+TBangunan TB;
 
 int main() {
     /* KAMUS */
@@ -46,23 +46,14 @@ int main() {
         printf("w:%d h:%d B:%d\n", mapheight, mapwidth, B);
         
         // membaca data bangunan sebanyak B
-        for (i = 1; i <= B; i++) {
-            type = CToken.bgn;
+        for (i = 1; i <= B; i++) { 
+            type(Bgn(TB, i)) = CToken.bgn;
             ADVTOKEN();
-            absis = CToken.val;
+            absis(Bgn(TB, i)) = CToken.val;
             ADVTOKEN();
-            ordinat = CToken.val;
+            ordinat(Bgn(TB, i)) = CToken.val;
             ADVTOKEN();
-            printf("[%d] t:%c x:%d y:%d\n", i, type, absis, ordinat);
-            
-            /*
-            Type(Bgn(TB, i)) = CToken.bgn;
-            ADVTOKEN();
-            Absis(Bgn(TB, i)) = CToken.val;
-            ADVTOKEN();
-            Ordinat(Bgn(TB, i)) = CToken.val;
-            ADVTOKEN();
-            */
+            printf("[%d] t:%c x:%d y:%d\n", i,type(Bgn(TB, i)), absis(Bgn(TB, i)), ordinat(Bgn(TB, i)));
         }
 
         // membaca graf keterhubungan bangunan
