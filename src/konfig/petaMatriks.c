@@ -90,13 +90,22 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 void TulisMATRIKS (MATRIKS M){
 	if (M.NBrsEff==0 || M.NKolEff==0) return;
 	int i,j;
+	for (i =1; i<=GetLastIdxBrs(M)+1; ++i){
+		printf("* ");
+	}
+	printf("\n");
 	for (i=1; i<=GetLastIdxBrs(M); ++i){
+		printf("*");
 		for (j = 1; j<=GetLastIdxKol(M); ++j){
 			printf("%c",Elmt(M,i,j));
 			if (j<GetLastIdxKol(M)) printf(" ");	
 		}
-		if (i<GetLastIdxBrs(M))printf("\n");
+		printf("*\n");
 	}
+	for (i =1; i<=GetLastIdxBrs(M)+1; ++i){
+		printf("* ");
+	}
+	printf("\n");
 }
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris

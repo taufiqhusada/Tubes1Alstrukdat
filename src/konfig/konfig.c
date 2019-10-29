@@ -19,6 +19,7 @@
 #include "boolean.h"
 #include "mesinkar.h"
 #include "mesintoken.h"
+#include "petaMatriks.h"
 #include "../bangunan/bangunan.h"
 
 /* VARIABEL GLOBAL */
@@ -44,7 +45,11 @@ int main() {
         B = CToken.val;
         ADVTOKEN();
         printf("w:%d h:%d B:%d\n", mapheight, mapwidth, B);
-        
+
+        // insisialisasi matriks untuk menyimpan peta
+        MATRIKS M;
+        MakeMATRIKS(mapheight,mapwidth,&M);
+
         // membaca data bangunan sebanyak B
         for (i = 1; i <= B; i++) { 
             type(Bgn(TB, i)) = CToken.bgn;
@@ -53,8 +58,11 @@ int main() {
             ADVTOKEN();
             ordinat(Bgn(TB, i)) = CToken.val;
             ADVTOKEN();
+            Elmt(M,absis(Bgn(TB, i)),ordinat(Bgn(TB, i))) = Bgn(TB,i);
             printf("[%d] t:%c x:%d y:%d\n", i,type(Bgn(TB, i)), absis(Bgn(TB, i)), ordinat(Bgn(TB, i)));
         }
+        TulisMATRIKS(M);
+
 
         // membaca graf keterhubungan bangunan
         
