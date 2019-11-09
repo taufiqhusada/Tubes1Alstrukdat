@@ -8,13 +8,13 @@
 #include "listlinier.h"
 
 /****************** TEST LIST KOSONG ******************/
-boolean IsEmpty (List L) {
+boolean IsEmptyList(List L) {
 /* Mengirim true jika list kosong */
 	return (First(L) == Nil);
 }
 
 /****************** PEMBUATAN LIST KOSONG ******************/
-void CreateEmpty (List *L) {
+void CreateEmptyList(List *L) {
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
 	First(*L) = Nil;
@@ -139,7 +139,7 @@ void InsertLast (List *L, address P) {
 	/* KAMUS */
 	address Last;
 	/* ALGORITMA */
-	if (IsEmpty(*L)) {
+	if (IsEmptyList(*L)) {
 		InsertFirst(&*L, P);
 	}
 	else {
@@ -228,7 +228,7 @@ void PrintInfo (List L) {
 	/* KAMUS */
 	address P;
 	/* ALGORITMA */
-	if (IsEmpty(L)) {
+	if (IsEmptyList(L)) {
 		printf("[]");
 	}
 	else {

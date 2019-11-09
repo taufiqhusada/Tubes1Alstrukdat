@@ -8,20 +8,20 @@
 #include <stdlib.h>
 
 /* ********* Prototype ********* */
-boolean IsEmpty (Queue Q) {
+boolean IsEmptyQueue (Queue Q) {
 /* Mengirim true jika Q kosong: lihat definisi di atas */
     return ((Head(Q) == Nil) && (Tail(Q) == Nil));
 }
-boolean IsFull (Queue Q) {
+boolean IsFullQueue (Queue Q) {
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
 /* yaitu mengandung elemen sebanyak MaxEl */
 
     return (Tail(Q) == MaxEl(Q));
 }
-int NBElmt (Queue Q) {
+int NbElmtQueue (Queue Q) {
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
     int n;
-    if (IsEmpty(Q)) {
+    if (IsEmptyQueue(Q)) {
         return 0;
     } 
     else if (Head(Q) <= Tail(Q)) {
@@ -35,14 +35,14 @@ int NBElmt (Queue Q) {
 }
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max) {
+void CreateEmptyQueue (Queue * Q, int MaxElmt) {
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */
 /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
-    (*Q).T = (int*) malloc ((Max+1) * sizeof(int));
-    MaxEl(*Q) = Max;
+    (*Q).T = (int*) malloc ((MaxElmt+1) * sizeof(int));
+    MaxEl(*Q) = MaxElmt;
 }
 /* *** Destruktor *** */
 void DeAlokasi(Queue * Q) {
@@ -58,7 +58,7 @@ void Add (Queue * Q, infotype X) {
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-    if (IsEmpty(*Q)) {
+    if (IsEmptyQueue(*Q)) {
         Head(*Q) = 1;
         Tail(*Q) = 1;
         InfoHead(*Q) = X;

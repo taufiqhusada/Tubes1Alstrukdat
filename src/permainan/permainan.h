@@ -24,7 +24,7 @@ void Init(Player *P);
 void printSkill(Player P);
 // print list skill yg available oleh player tertentu
 
-void printBangunan(Queue P);
+void printBangunan(Player P);
 // print list bangunan oleh player tertentu
 
 void printAllState(Player P);
