@@ -4,6 +4,7 @@
 #include"../skill/skill.h"
 #include"../bangunan/listlinier.h"
 #include"../skill/queue.h"
+#include"../stackUndo/stackToken.h"
 
 typedef struct 
 {

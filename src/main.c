@@ -16,12 +16,12 @@
 /* 01   int      graf keterhubungan              */
 
 #include <stdio.h>
-#include "../konfig/boolean.h"
-#include "../konfig/mesinkar.h"
-#include "../konfig/mesintoken.h"
-#include "../konfig/petaMatriks.h"
-#include "../bangunan/bangunan.h"
-#include "../permainan/permainan.h"
+#include "konfig/boolean.h"
+#include "konfig/mesinkar.h"
+#include "konfig/mesintoken.h"
+#include "konfig/petaMatriks.h"
+#include "bangunan/bangunan.h"
+#include "permainan/permainan.h"
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
@@ -79,7 +79,7 @@ int main() {
                 printBangunan(player1);
                 printBangunan(player2);
                 if (playerTurn==1){
-
+                    
                 }
             }
             else if (inputCommand=="LEVEL_UP"){
@@ -115,7 +115,7 @@ int main() {
                 playerTurn ^= 3;
             }
             else if (inputCommand=="MOVE"){
-                
+
             }
             else if (inputCommand=="EXIT"){
                 isRunProgram = false;
