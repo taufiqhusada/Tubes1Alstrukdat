@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "queue.h"
 #include "skill.h"
+#include "../bangunan/bangunan.h"
 
 void InstantUpgrade(Queue *Q, Owner, TBangunan *T) { // Skill Code = IU
 /* I.S. Pemain memiliki bangunan */

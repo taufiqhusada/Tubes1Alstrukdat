@@ -13,7 +13,7 @@
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef SKILL infotype;
+typedef char infotype;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
@@ -43,7 +43,7 @@ int NBElmt (Queue Q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 
 /* *** Kreator *** */
-void CreateEmpty (Queue * Q, int Max);
+void CreateEmpty (Queue * Q, int MaxEl);
 /* I.S. sembarang */
 /* F.S. Sebuah Q kosong terbentuk dan salah satu kondisi sbb: */
 /* Jika alokasi berhasil, Tabel memori dialokasi berukuran Max+1 */

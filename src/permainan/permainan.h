@@ -3,12 +3,14 @@
 
 #include"../skill/skill.h"
 #include"../bangunan/listlinier.h"
+#include"../skill/queue.h"
 
 typedef struct 
 {
     Queue qSkillPlayer;
     Stack stackPlayer;  // untuk undo
     LBangunant listBangunan;
+    int turn;
 }Player;
 
 #define qSkillPlayer(P) (P).qSkillPlayer
@@ -16,16 +18,19 @@ typedef struct
 #define listBangunan(P) (P).LBangunant
 
 
-void InitSkill(Queue *Q);
+void Init(Player *P);
 // prosedur untuk menginisialisasi queue of skill
 
-void printSkill(Queue *Q);
+void printSkill(Player P);
 // print list skill yg available oleh player tertentu
 
-void printBangunan(Queue *Q);
+void printBangunan(Queue P);
 // print list bangunan oleh player tertentu
 
-void Undo(Queue *Q);
+void printAllState(Player P);
+// 
+
+void Undo(Stack *S);
 // metode undo memanfaatkan stack
 
 
