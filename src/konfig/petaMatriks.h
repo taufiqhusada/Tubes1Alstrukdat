@@ -74,6 +74,4 @@ void TulisMATRIKS (MATRIKS M);
 8 9 10
 */
 
-
-
 #endif

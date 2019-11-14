@@ -72,8 +72,16 @@ void AddPasukan(BANGUNAN *B);
 /* I.S. Terdapat bangunan *B */
 /* F.S. Jika jumlah pasukan di bangunan *B belum mencapai batas M, */
 /*      jumlah pasukan ditambah sebanyak A */
-void Move(BANGUNAN *B1, BANGUNAN *B2); 
+void Move(BANGUNAN *B1, BANGUNAN *B2, int N); 
 // apa ini masuk commands aja
+void ChangeOwnerB(BANGUNAN *B);
+/* I.S. Terdapat bangunan *B dengan owner salah seorang pemain */
+/* F.S. Bangunan *B menjadi milik lawan pemain */
+void TulisDataBangunan(BANGUNAN B);
+/* I.S. Terdapat bangunan B */
+/* F.S. Tercetak data bangunan B di layar */
+/* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level>
+/* Contoh : 1. Castle (1,15) 20 lv. 3 */
 
 /* **** TESTS ***** */
 boolean MaxPas(BANGUNAN B);

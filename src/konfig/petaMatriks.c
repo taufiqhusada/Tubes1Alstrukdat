@@ -116,3 +116,43 @@ void TulisMATRIKS (MATRIKS M){
 4 5 6
 8 9 10
 */
+
+void TulisDataBangunan (MATRIKS M, int i, int j) {
+	/* *** QUESTION: KALO DI PETAK ITU GAADA BANGUNANNYA? *** */
+/* I.S. M terdefinisi */
+/* F.S. Data bangunan di M(i, j) tercetak di layar */
+/* Format pencetakan: <nama bangunan> <koordinat> <jumlah pasukan> <level> */
+/* Contoh : Castle (1,15) 20 lv. 3 */
+	if (IsIdxEff(M, i, j)) {
+		// print tipe bangunan
+		switch(type(Elmt(M, i, j))) {
+			case 'C':
+				printf("Castle ");
+			case 'T':
+				printf("Tower ");
+			case 'F':
+				printf("Fort ");
+			case 'V':
+				printf("Village ");
+		}
+
+		// print posisi bangunan
+		printf("(%d, %d) ", i, j);
+
+		// print jumlah pasukan
+		printf("%d ", nbPas(Elmt(M, i, j)));
+
+		// print level bangunan
+		printf("lv. ");
+		switch(level(Elmt(M, i, j))) {
+			case 1:
+				printf("1");
+			case 2:
+				printf("2");
+			case 3:
+				printf("3");
+			case 4:
+				printf("4");
+		}
+	}
+}
