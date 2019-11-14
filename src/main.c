@@ -16,12 +16,16 @@
 /* 01   int      graf keterhubungan              */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "konfig/boolean.h"
 #include "konfig/mesinkar.h"
 #include "konfig/mesintoken.h"
 #include "konfig/petaMatriks.h"
 #include "bangunan/bangunan.h"
+#include "graph/multilist.h"
+/* 
 #include "permainan/permainan.h"
+*/
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
@@ -63,8 +67,38 @@ int main() {
             printf("[%d] t:%c x:%d y:%d\n", i,type(Bgn(TB, i)), absis(Bgn(TB, i)), ordinat(Bgn(TB, i)));
         }
         TulisMATRIKS(M);
+        Multilist L;
+	    CreateEmptyMultilist(&L);
+        for (i = 1; i<=B; ++i){
+            int j;
+            for (j = 1; j<=B; ++j){
+                if (CToken.val==1){
+                    InsertPair(&L, i, j);
+                    //InsertPair(&L, j, i);
+                    //if (IsConnectedDirect(L,i,j)) printf("%d %d \n", i, j);
+                }
+                ADVTOKEN();
+            }
+        }
+        printf("\n");
+        int *arrResult = (int*) malloc(100*sizeof(int));
+        int sizeArr = 0;
+        for (i = 1; i<=B; ++i){
+            printf("%d -> \n", i);
+            FindAllAdj(L,i,&arrResult,&sizeArr);
+            if (sizeArr==0){
+                printf("do not have any adj node\n");
+            }
+            else{
+                int j;
+                for (j = 1; j<=sizeArr; ++j){
+                    printf("%d ", arrResult[j]);
+                }
+                printf("\n");
+            }
+        }
 
-
+        /* 
         // membaca graf keterhubungan bangunan
         boolean isRunProgram = true;
         int playerTurn = 1;
@@ -125,6 +159,7 @@ int main() {
             }
 
         }
+        */
         
         
 }
