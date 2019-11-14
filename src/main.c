@@ -17,15 +17,18 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "konfig/boolean.h"
 #include "konfig/mesinkar.h"
 #include "konfig/mesintoken.h"
 #include "konfig/petaMatriks.h"
 #include "bangunan/bangunan.h"
+#include "bangunan/list_bangunan.h"
+#include "stackUndo/stackToken.h"
 #include "graph/multilist.h"
-/* 
+#include "skill/queue.h"
 #include "permainan/permainan.h"
-*/
+
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
@@ -97,26 +100,24 @@ int main() {
                 printf("\n");
             }
         }
-
-        /* 
         // membaca graf keterhubungan bangunan
         boolean isRunProgram = true;
         int playerTurn = 1;
         Player player1;
         Player player2;
-        init(&player1);
-        init(&player2);
+        Init(&player1);
+        Init(&player2);
         while(isRunProgram){
             char inputCommand[20];
             scanf("%s", inputCommand);
-            if (inputCommand=="ATTACK"){
+            if (strcmp(inputCommand,"ATTACK")==0){
                 printBangunan(player1);
                 printBangunan(player2);
                 if (playerTurn==1){
                     
                 }
             }
-            else if (inputCommand=="LEVEL_UP"){
+            else if (strcmp(inputCommand,"LEVEL_UP")){
                 if (playerTurn==1){
                     printBangunan(player1);      
                 }
@@ -127,7 +128,7 @@ int main() {
                 scanf("%d", &inputPilihan);
                 LevelUp(&Bgn(TB,inputPilihan));
             }
-            else if (inputCommand=="SKILL"){
+            else if (strcmp(inputCommand,"SKILL")){
                 if (playerTurn==1) {
                     printSkill(player1);
                     if (!IsEmptyQueue(player1.qSkillPlayer)){
@@ -142,16 +143,16 @@ int main() {
                 }
             
             }
-            else if (inputCommand=="UNDO"){
+            else if (strcmp(inputCommand,"UNDO")){
 
             }
-            else if (inputCommand=="END_TURN"){
+            else if (strcmp(inputCommand,"END_TURN")){
                 playerTurn ^= 3;
             }
-            else if (inputCommand=="MOVE"){
+            else if (strcmp(inputCommand,"MOVE")==0){
 
             }
-            else if (inputCommand=="EXIT"){
+            else if (strcmp(inputCommand,"EXIT")){
                 isRunProgram = false;
             }
             else{
@@ -159,7 +160,6 @@ int main() {
             }
 
         }
-        */
         
         
 }

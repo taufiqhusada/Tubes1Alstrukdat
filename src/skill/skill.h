@@ -6,20 +6,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "../bangunan/bangunan.h"
 #include "queue.h"
 
-#define MaxCodeLen 5
+/*define + struct dipindahin ke queue.h */
 
-typedef struct  {
-    char skillCode[MaxCodeLen]; // Nama Skill dengan Code
-} SKILL;
+
 
 #define HeadSklCode(Q) (Q).T[(Q).HEAD].skillCode
 #define SkillCode(X) (X).skillCode
 
 // List Skill akan bertipe Queue
 
-void InstantUpgrade(Queue *Q); // Skill Code = IU
+void InstantUpgrade(Queue *Q, int Owner, TBangunan *T); // Skill Code = IU
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
 
@@ -31,7 +30,7 @@ void InstantReinforcement(Queue *Q); // Skill Code = IR
 /* I.S. Semua bangunan milik pemain sudah menjadi level 4 */
 /* F.S. Semua bangunan mendapatkan tambahan 5 pasukan */
 
-void Barrage(Queue *Q); // Skill Code = B
+void Barrage(Queue *Q, int Owner, TBangunan *T); // Skill Code = B
 /* I.S. Bangunan Pemain baru saja menjadi 10 bangunan */
 /* F.S. Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 */
 

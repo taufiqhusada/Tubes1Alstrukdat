@@ -10,27 +10,25 @@
 
 #include "boolean.h"
 
-#define Nil NULL
+#define NilLBangunan NULL
 
-typedef struct tElmtlist *address;
+typedef struct tElmtlist *adrBgn;
 typedef struct tElmtlist {
-	MATRIKS M;
+	TBangunan TB;
 	int i; 
-	int j;
-	address next;
+	adrBgn next;
 } ElmtList;
 typedef struct {
-	address First;
+	adrBgn First;
 } List;
 
 /* Definisi list : */
 /* List kosong : First(L) = Nil */
-/* Setiap elemen dengan address P dapat diacu Info(P), Next(P) */
-/* Elemen terakhir list : jika addressnya Last, maka Next(Last)=Nil */
+/* Setiap elemen dengan adrBgn P dapat diacu Info(P), Next(P) */
+/* Elemen terakhir list : jika adrBgnnya Last, maka Next(Last)=Nil */
 
-#define Mtr(P) (P)->M
+#define TB(P) (P)->TB
 #define I(P) (P)->i
-#define J(P) (P)->j
 #define Next(P) (P)->next
 #define First(L) ((L).First)
 
@@ -64,33 +62,33 @@ void ChangeOwner (List L1, List L2, int X);
 /********************************************************/
 
 /****************** Manajemen Memori ******************/
-address Alokasi (MATRIKS M, int i, int j);
-/* Mengirimkan address hasil alokasi sebuah elemen */
-/* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
+adrBgn AlokasiBgn (TBangunan TB, int i);
+/* Mengirimkan adrBgn hasil alokasi sebuah elemen */
+/* Jika alokasi berhasil, maka adrBgn tidak nil, dan misalnya */
 /* menghasilkan P, maka Mtr(P) = M, I(P) = i, J(P) = j, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
-void Dealokasi (address *P);
+void DealokasiBgn (adrBgn *P);
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
-/* Melakukan dealokasi/pengembalian address P */
+/* Melakukan dealokasi/pengembalian adrBgn P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address GoTo (List L, int X);
+adrBgn GoTo (List L, int X);
 /* Iterasi menuju elemen list ke-X */
 /* Prekondisi: 1 <= X <= NbBangunan */
 
-// address SearchList (List L, infotype X);
+// adrBgn SearchList (List L, infotype X);
 /* Mencari apakah ada elemen list dengan Info(P)= X */
-/* Jika ada, mengirimkan address elemen tersebut. */
+/* Jika ada, mengirimkan adrBgn elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirst (List *L, MATRIKS M, int i, int j);
+void InsVFirst (List *L, TBangunan TB, int i);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLast (List *L, MATRIKS M, int i, int j);
+void InsVLast (List *L, TBangunan TB, int i);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -108,35 +106,35 @@ void InsVLast (List *L, MATRIKS M, int i, int j);
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
 /*** PENAMBAHAN ELEMEN BERDASARKAN ALAMAT ***/
-void InsertFirst (List *L, address P);
+void InsertFirst (List *L, adrBgn P);
 /* I.S. Sembarang, P sudah dialokasi  */
-/* F.S. Menambahkan elemen ber-address P sebagai elemen pertama */
-void InsertAfter (List *L, address P, address Prec);
+/* F.S. Menambahkan elemen ber-adrBgn P sebagai elemen pertama */
+void InsertAfter (List *L, adrBgn P, adrBgn Prec);
 /* I.S. Prec pastilah elemen list dan bukan elemen terakhir, */
 /*      P sudah dialokasi  */
 /* F.S. Insert P sebagai elemen sesudah elemen beralamat Prec */
-void InsertLast (List *L, address P);
+void InsertLast (List *L, adrBgn P);
 /* I.S. Sembarang, P sudah dialokasi  */
 /* F.S. P ditambahkan sebagai elemen terakhir yang baru */
 
 /*** PENGHAPUSAN SEBUAH ELEMEN ***/
-void DelFirst (List *L, address *P);
+void DelFirst (List *L, adrBgn *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
 void DelP (List *L, int X);
 /* I.S. Sembarang */
-/* F.S. Jika ada elemen list beraddress P, elemen ke-X  */
+/* F.S. Jika ada elemen list beradrBgn P, elemen ke-X  */
 /* Maka P dihapus dari list dan di-dealokasi */
 /* List mungkin menjadi kosong karena penghapusan */
-void DelLast (List *L, address *P);
+void DelLast (List *L, adrBgn *P);
 /* I.S. List tidak kosong */
 /* F.S. P adalah alamat elemen terakhir list sebelum penghapusan  */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* Last element baru adalah predesesor elemen terakhir yg lama, */
 /* jika ada */
-void DelAfter (List *L, address *Pdel, address Prec);
+void DelAfter (List *L, adrBgn *Pdel, adrBgn Prec);
 /* I.S. List tidak kosong. Prec adalah anggota list  */
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */

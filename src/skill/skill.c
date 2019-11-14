@@ -6,7 +6,7 @@
 #include "skill.h"
 #include "../bangunan/bangunan.h"
 
-void InstantUpgrade(Queue *Q, Owner, TBangunan *T) { // Skill Code = IU
+void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IU
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
     SKILL SklOut;
@@ -15,7 +15,7 @@ void InstantUpgrade(Queue *Q, Owner, TBangunan *T) { // Skill Code = IU
     Del(Q, &SklOut);
     if (Owner == 1) { // Owner Pemain 1
         for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
-            if (owner(Bgn(*T, i) == 1)) {
+            if (owner(Bgn(*T, i)) == 1) {
                
                 if (level(Bgn(*T, i)) != 4) {
                     level(Bgn(*T, i)) += 1;
@@ -30,7 +30,7 @@ void InstantUpgrade(Queue *Q, Owner, TBangunan *T) { // Skill Code = IU
     else { // Owner Pemain 2
 
         for (i = 1; i <= 30; i++) { // Iterasi Cek Semua bangunan
-            if (owner(Bgn(*T, i) == 1)) {
+            if (owner(Bgn(*T, i)) == 1) {
                
                 if (level(Bgn(*T, i)) != 4) {
                     level(Bgn(*T, i)) += 1;
@@ -52,19 +52,20 @@ void InstantReinforcement(Queue *Q); // Skill Code = IR
 /* I.S. Semua bangunan milik pemain sudah menjadi level 4 */
 /* F.S. Semua bangunan mendapatkan tambahan 5 pasukan */
 
-void Barrage(Queue *Q, Owner, TBangunan *T) { // Skill Code = B
+void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill Code = B
 /* I.S. Bangunan Pemain baru saja menjadi 10 bangunan */
 /* F.S. Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 */
     SKILL SklOut;
     int i;
+    int Lawan;
 
     Del(Q, &SklOut);
 
     if (Owner == 1) {
-        Lawan = 2
+        Lawan = 2;
     }
     else {
-        Lawan = 1
+        Lawan = 1;
     }
 
     

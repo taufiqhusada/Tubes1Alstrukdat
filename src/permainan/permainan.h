@@ -2,7 +2,7 @@
 #define __PERMAINAN_H__
 
 #include"../skill/skill.h"
-#include"../bangunan/listlinier.h"
+#include"../bangunan/list_bangunan.h"
 #include"../skill/queue.h"
 #include"../stackUndo/stackToken.h"
 
@@ -10,7 +10,7 @@ typedef struct
 {
     Queue qSkillPlayer;
     Stack stackPlayer;  // untuk undo
-    LBangunant listBangunan;
+    List listBangunan;
     int turn;
 }Player;
 
