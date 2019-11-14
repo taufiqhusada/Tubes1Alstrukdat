@@ -6,7 +6,7 @@
 #ifndef multilistlinier_H
 #define multilistlinier_H
 
-#include "boolean.h"
+#include "../konfig/boolean.h"
 
 
 typedef struct tElmtNode *addressNode;
@@ -48,5 +48,7 @@ void DealokasiAdj(addressAdj* P);
 void InsertPair(Multilist *L, int X, int Y);
 
 boolean IsConnectedDirect(Multilist L, int X, int Y);
+
+void FindAllAdj(Multilist L, int node, int *arrResult[], int *sizeArr);
 
 #endif

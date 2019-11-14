@@ -58,7 +58,7 @@ void DealokasiAdj(addressAdj* P){
 }
 
 addressNode searchNode(Multilist L, int X){
-	if (IsEmptyMultilist(L)) return false;
+	if (IsEmptyMultilist(L)) return NULL;
 	addressNode P = L.First;
 	boolean isFound = false;
 	while((P != NULL)){
@@ -110,6 +110,28 @@ boolean IsConnectedDirect(Multilist L, int X, int Y){
 		}
 	}
 	return false;
+}
+
+
+void FindAllAdj(Multilist L, int node, int **arrResult, int *sizeArr){
+	addressNode aNode = searchNode(L,node);
+	if (aNode==NULL){
+		*sizeArr = 0;
+	}
+	else{
+		addressAdj aAdj = aNode->firstAdj;
+		//printf("%d ", aAdj);
+		int i = 1;
+		while(aAdj!=NULL){
+			(*arrResult)[i] = aAdj -> info;
+			aAdj = aAdj -> nextAdj;
+			
+			i+=1;
+			
+		}
+		*sizeArr = i-1;
+		
+	}
 }
 
 
