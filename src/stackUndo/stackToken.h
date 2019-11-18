@@ -3,6 +3,7 @@
 #define stackt_H
 
 #include "../konfig/boolean.h"
+#include "../bangunan/bangunan.h"
 
 #define NilStack 0
 #define MaxElStack 10
@@ -12,7 +13,7 @@
 typedef struct 
 {
 	int jumlahPush;
-	int bangunanChange;
+	BANGUNAN bangunanChange;
 }infotypeStack;
 typedef int addressStack;   /* indeks tabel */
 
@@ -49,13 +50,13 @@ boolean IsFullStack(Stack S);
 /* Mengirim true jika tabel penampung Nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack(Stack * S, int jumlahPush, int bChange);
+void PushStack(Stack * S, int jumlahPush, BANGUNAN bChange);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void PopStack(Stack * S, int* X);
+void PopStack(Stack * S, BANGUNAN* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah Nilai elemen TOP yang lama, TOP berkurang 1 */
