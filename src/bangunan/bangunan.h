@@ -25,6 +25,7 @@ typedef struct {
     int absis;      // letak absis
     int ordinat;    // letak ordinat
     int idxArray;
+    boolean isAdaPertahanan;
 } BANGUNAN;
 
 /* ***** ARRAY BANGUNAN ***** */
@@ -48,6 +49,8 @@ typedef struct {
 // letak
 #define absis(B) (B).absis
 #define ordinat(B) (B).ordinat
+// pertahanan
+#define isAdaPertahanan(B) (B).isAdaPertahanan
 
 /* ***** SET UP ***** */
 void copyBangunan(BANGUNAN *Bawal, BANGUNAN *BTarget);

@@ -36,6 +36,9 @@ typedef struct {
 
 /* MUNGKIN DIPAKAI DALAM PERMAINAN */
 /********************************************************/
+void AddPasukanAll (List L, TBangunan TB);
+// level up all bangunan (saat awal turn)
+
 // SELF BUILDINGS
 boolean IsEmptyList (List L);
 /* Mengirim true jika list kosong */

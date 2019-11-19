@@ -18,6 +18,7 @@ void copyBangunan(BANGUNAN *Bawal, BANGUNAN *BTarget){
     (*BTarget).nbPasukan = (*Bawal).nbPasukan;
     (*BTarget).level = (*Bawal).level;
     (*BTarget).idxArray = (*Bawal).idxArray;
+    (*BTarget).isAdaPertahanan = (*Bawal).isAdaPertahanan;
 }
 
 
@@ -51,6 +52,10 @@ void CreateBangunan(BANGUNAN *B) {
     }
     nbPas(*B) = U(*B);
     level(*B) = 1;
+    isAdaPertahanan(*B) = false;
+    if (type(*B)=='T'){
+        isAdaPertahanan(*B) = true;
+    }
     //TulisDataBangunan(*B);
 }
 
@@ -139,7 +144,6 @@ void LevelUp(BANGUNAN *B, boolean *status) {
     }
     else{
         *status = false;
-        printf("Bangunan ini belum memenuhi syarat untuk level up\n");
     }
 }
 void Conquered(BANGUNAN *B) { // apa masuk commands aja?

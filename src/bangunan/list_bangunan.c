@@ -11,7 +11,21 @@
 
 /* MUNGKIN DIPAKAI DALAM PERMAINAN */
 /********************************************************/
+
+void AddPasukanAll (List L, TBangunan TB) {
+    /* KAMUS */
+    adrBgn P;
+    /* ALGORITMA */
+    P = First(L);
+	boolean status;
+    while (P != NilLBangunan) {
+        AddPasukan(&Bgn(TB(P), I(P)));
+        P = Next(P);
+    }
+}
+
 // SELF BUILDINGS
+
 boolean IsEmptyList (List L) {
 /* Mengirim true jika list kosong */
     return (First(L) == NilLBangunan);

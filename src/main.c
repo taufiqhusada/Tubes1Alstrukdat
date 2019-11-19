@@ -130,7 +130,15 @@ int main() {
         boolean status;     // untuk mengecek apakah proses command berhasil atau tidak, jika berhasil maka dimasukkan ke stack
         CreateEmptyStack(&undoStack);
         while(isRunProgram){
-            
+            if (playerTurn==1){
+                AddPasukanAll(player1.listBangunan,TB);
+                printBangunan(player1);
+            }
+            else{
+                AddPasukanAll(player2.listBangunan,TB);
+                printBangunan(player2);
+            }
+            printf("Masukkan command: ");
             char inputCommand[20]; 
             scanf("%s", inputCommand);
             
@@ -155,6 +163,9 @@ int main() {
                     if (status){
                         PushStack(&undoStack, 1, before);
                     }
+                    else{
+                        printf("Bangunan ini tidak bisa di level-up\n");
+                    }
                 }
                 else{
                     printf("Daftar bangunan: \n");
@@ -168,6 +179,9 @@ int main() {
                     LevelUp(&Bgn(TB,pos), &status);   
                     if (status){
                         PushStack(&undoStack, 1, before);
+                    }
+                    else{
+                        printf("Bangunan ini tidak bisa di level-up\n");
                     }
                 }
                 
