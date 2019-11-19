@@ -82,7 +82,7 @@ adrBgn AlokasiBgn (TBangunan TB, int i) {
 	/* KAMUS */
 	adrBgn P;
 	/* ALGORITMA */
-	P = (adrBgn) malloc (1 * sizeof(adrBgn));
+	P = (adrBgn) malloc (1 * sizeof(ElmtList));
 	if (P != NilLBangunan) {
 		TB(P) = TB;
 		I(P) = i;
@@ -153,7 +153,7 @@ void InsVFirst (List *L, TBangunan TB, int i) {
 	/* ALGORITMA */
 	P = AlokasiBgn(TB, i);
 	if (P != NilLBangunan) {
-		InsertFirst(&*L, P);
+		InsertFirst(L, P);
 	}
 }
 void InsVLast (List *L, TBangunan TB, int i) {

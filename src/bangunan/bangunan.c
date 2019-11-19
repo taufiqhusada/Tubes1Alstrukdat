@@ -2,10 +2,26 @@
 /* 27 Oktober 2019 */
 
 #include <stdio.h>
+#include "../graph/multilist.h"
 #include "bangunan.h"
 
 /* ***** SET UP ***** */
-void LevelOne(BANGUNAN *B) {
+void copyBangunan(BANGUNAN *Bawal, BANGUNAN *BTarget){
+    (*BTarget).A = (*Bawal).A;
+    (*BTarget).M = (*Bawal).M;
+    (*BTarget).P = (*Bawal).P;
+    (*BTarget).U = (*Bawal).U;
+    (*BTarget).absis = (*Bawal).absis;
+    (*BTarget).ordinat = (*Bawal).ordinat;
+    (*BTarget).type = (*Bawal).type;
+    (*BTarget).owner = (*Bawal).owner;
+    (*BTarget).nbPasukan = (*Bawal).nbPasukan;
+    (*BTarget).level = (*Bawal).level;
+    (*BTarget).idxArray = (*Bawal).idxArray;
+}
+
+
+void CreateBangunan(BANGUNAN *B) {
 /* Membentuk bangunan yang ada di dalam game */
 /* I.S. Terdapat bangunan tipe C/T/V/F di titik tertentu */
 /* F.S. Bangunan dilengkapi dengan properti level 1 */
@@ -33,10 +49,13 @@ void LevelOne(BANGUNAN *B) {
         P(*B) = false;
         U(*B) = 20;
     }
+    nbPas(*B) = U(*B);
+    level(*B) = 1;
+    //TulisDataBangunan(*B);
 }
 
 /* ***** OPERATIONS ***** */
-void LevelUp(BANGUNAN *B) {
+void LevelUp(BANGUNAN *B, boolean *status) {
 /* Melevel up bangunan yang dimiliki pemain */
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Bangunan yang dimiliki pemain naik satu level, yang berarti */
@@ -44,6 +63,7 @@ void LevelUp(BANGUNAN *B) {
 /*      dan jumlah pasukan berkurang sebanyak M/2 */
 /* Syarat: jumlah pasukan yang harus dimiliki bangunan: M/2 */
     if (Upgradeable(*B)) {
+        *status = true;
         // mengurangi jumlah pasukan
         nbPas(*B) = nbPas(*B) - M(*B)/2;
         // menaikkan level
@@ -117,6 +137,10 @@ void LevelUp(BANGUNAN *B) {
             break;
         }
     }
+    else{
+        *status = false;
+        printf("Bangunan ini belum memenuhi syarat untuk level up\n");
+    }
 }
 void Conquered(BANGUNAN *B) { // apa masuk commands aja?
 /* Dipakai ketika bangunan berhasil direbut oleh lawan */
@@ -136,17 +160,19 @@ void AddPasukan(BANGUNAN *B) {
         nbPas(*B) = nbPas(*B) + A(*B);
     }
 }
-void Move(BANGUNAN *B1, BANGUNAN *B2, int N){ // apa ini masuk commands aja
+void Move(Multilist L, BANGUNAN *B1, BANGUNAN *B2, int N, boolean*status){ // apa ini masuk commands aja
 /* Memindahkan pasukan sebanyak N dari bangunan B1 ke bangunan B2 */
 /* I.S. Terdapat dua buah bangunan, jumlah pasukan bebas */
 /* F.S. Pasukan di B1 berkurang sejumlah N, di B2 bertambah sejumlah N */ 
-    if (Connected(*B1, *B2) && SameOwner(*B1, *B2)) {
+    if (Connected(L, *B1, *B2) && SameOwner(*B1, *B2)) {
         if (nbPas(*B1) < N) {
             printf("Jumlah pasukan tidak mencukupi.");
+            *status = false;
         }
         else {
             nbPas(*B1) = nbPas(*B1) - N;
             nbPas(*B2) = nbPas(*B2) + N;
+            *status = true;
         }
     }
 }
@@ -172,12 +198,16 @@ void TulisDataBangunan(BANGUNAN B){
     switch(type(B)) {
         case 'C':
             printf("Castle ");
+            break;
         case 'T':
             printf("Tower ");
+            break;
         case 'F':
             printf("Fort ");
+            break;
         case 'V':
             printf("Village ");
+            break;
     }
 
     // tulis posisi, jumlah pasukan, level
@@ -198,7 +228,8 @@ boolean CanConquer(BANGUNAN B1, BANGUNAN B2) {
 /* Berarti pasukan B1 dapat mengambil alih bangunan B2 */
     return (nbPas(B1) >= U(B2));
 }
-boolean Connected(BANGUNAN B1, BANGUNAN B2) {
+boolean Connected(Multilist L, BANGUNAN B1, BANGUNAN B2) {
+    return IsConnectedDirect(L, B1.idxArray, B2.idxArray);
 /* True jika B1 dan B2 saling terhubung */
 }
 boolean SameOwner(BANGUNAN B1, BANGUNAN B2) {

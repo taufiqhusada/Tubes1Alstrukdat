@@ -5,6 +5,7 @@
 #define _BANGUNAN_
 
 #include "boolean.h"
+#include "../graph/multilist.h"
 
 #define IdxMax 30
 #define IdxMin 1  // tapi minimal ada 4 bangunan
@@ -23,6 +24,7 @@ typedef struct {
     int U;          // pasukan awal untuk menjadikan bangunan ini milik pemain
     int absis;      // letak absis
     int ordinat;    // letak ordinat
+    int idxArray;
 } BANGUNAN;
 
 /* ***** ARRAY BANGUNAN ***** */
@@ -48,13 +50,15 @@ typedef struct {
 #define ordinat(B) (B).ordinat
 
 /* ***** SET UP ***** */
+void copyBangunan(BANGUNAN *Bawal, BANGUNAN *BTarget);
+
 void CreateBangunan(BANGUNAN *B);
 /* Membentuk bangunan yang ada di dalam game */
 /* I.S. Sembarang */
 /* F.S. Terbentuk sebuah bangunan dengan properti level 1 */
 
 /* ***** OPERATIONS ***** */
-void LevelUp(BANGUNAN *B);
+void LevelUp(BANGUNAN *B, boolean *status);
 /* Melevel up bangunan yang dimiliki pemain */
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Bangunan yang dimiliki pemain naik satu level, yang berarti */
@@ -72,7 +76,7 @@ void AddPasukan(BANGUNAN *B);
 /* I.S. Terdapat bangunan *B */
 /* F.S. Jika jumlah pasukan di bangunan *B belum mencapai batas M, */
 /*      jumlah pasukan ditambah sebanyak A */
-void Move(BANGUNAN *B1, BANGUNAN *B2, int N); 
+void Move(Multilist L, BANGUNAN *B1, BANGUNAN *B2, int N, boolean *status); 
 // apa ini masuk commands aja
 void ChangeOwnerB(BANGUNAN *B);
 /* I.S. Terdapat bangunan *B dengan owner salah seorang pemain */
@@ -91,7 +95,7 @@ boolean Upgradeable(BANGUNAN B);
 boolean CanConquer(BANGUNAN B1, BANGUNAN B2);
 /* True jika jumlah pasukan B1 >= (B2).U */
 /* Berarti pasukan B1 dapat mengambil alih bangunan B2 */
-boolean Connected(BANGUNAN B1, BANGUNAN B2);
+boolean Connected(Multilist L, BANGUNAN B1, BANGUNAN B2);
 /* True jika B1 dan B2 saling terhubung */
 boolean SameOwner(BANGUNAN B1, BANGUNAN B2);
 /* True jika B1 dan B2 dimiliki pemain sama */
