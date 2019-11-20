@@ -18,6 +18,10 @@
 
 // List Skill akan bertipe Queue
 
+void addSkill (Queue *Q, infotypeQueue X);
+/* I.S. X adalah skill dan Q terdefisini */
+/* F.S. X dimasukkan kedalam Queue dan TailQueue(Q) = X */
+
 void InstantUpgrade(Queue *Q, int Owner, TBangunan *T); // Skill Code = IU
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
