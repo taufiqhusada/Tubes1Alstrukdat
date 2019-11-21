@@ -19,7 +19,7 @@ void AddPasukanAll (List L, TBangunan TB) {
     P = First(L);
 	boolean status;
     while (P != NilLBangunan) {
-        AddPasukan(&Bgn(TB(P), I(P)));
+        AddPasukan(&Bgn(TB, I(P)));
         P = Next(P);
     }
 }
@@ -35,7 +35,7 @@ void CreateEmptyList (List *L) {
 /* F.S. Terbentuk list kosong */
 	First(*L) = NilLBangunan;
 }
-void PrintInfo (List L) {
+void PrintInfo (List L, TBangunan TB) {
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, isi list dicetak ke bawah */
 /* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level>
@@ -49,7 +49,7 @@ void PrintInfo (List L) {
     P = First(L);
     while (P != NilLBangunan) {
         printf("%d. ", i);
-        TulisDataBangunan(Bgn(TB(P), I(P)));
+        TulisDataBangunan(Bgn(TB, I(P)));
         printf("\n");
         i++;
         P = Next(P);
@@ -70,7 +70,7 @@ int NbBangunan (List L) {
 	return sum;
 }
 
-void ChangeOwner (List L1, List L2, int X) {
+void ChangeOwner (TBangunan TB,List L1, List L2, int X) {
 /* I.S. Bangunan B elemen L1 (milik pemain 1) */
 /* F.S. Bangunan B menjadi milik pemain 2. Maka: */
 /* 	Bangunan dihapus dari L1 dan ditambahkan ke L2 terakhir */
@@ -78,7 +78,7 @@ void ChangeOwner (List L1, List L2, int X) {
     adrBgn changed;
     /* ALGORITMA */
     changed = GoTo(L1, X);
-    ChangeOwnerB(&Bgn(TB(changed), I(changed)));
+    ChangeOwnerB(&Bgn(TB, I(changed)));
 	DelP(&L1, X);
 	InsertLast(&L2, changed);
 }
@@ -98,7 +98,6 @@ adrBgn AlokasiBgn (TBangunan TB, int i) {
 	/* ALGORITMA */
 	P = (adrBgn) malloc (1 * sizeof(ElmtList));
 	if (P != NilLBangunan) {
-		TB(P) = TB;
 		I(P) = i;
 		Next(P) = NilLBangunan;
 	}

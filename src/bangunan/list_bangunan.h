@@ -14,7 +14,6 @@
 
 typedef struct tElmtlist *adrBgn;
 typedef struct tElmtlist {
-	TBangunan TB;
 	int i; 
 	adrBgn next;
 } ElmtList;
@@ -27,7 +26,6 @@ typedef struct {
 /* Setiap elemen dengan adrBgn P dapat diacu Info(P), Next(P) */
 /* Elemen terakhir list : jika adrBgnnya Last, maka Next(Last)=Nil */
 
-#define TB(P) (P)->TB
 #define I(P) (P)->i
 #define Next(P) (P)->next
 #define First(L) ((L).First)
@@ -45,7 +43,7 @@ boolean IsEmptyList (List L);
 void CreateEmptyList (List *L);
 /* I.S. sembarang             */
 /* F.S. Terbentuk list kosong */
-void PrintInfo (List L);
+void PrintInfo (List L, TBangunan TB);
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, isi list dicetak ke bawah */
 /* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level>
@@ -55,7 +53,7 @@ int NbBangunan (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 // RELATIONALS
-void ChangeOwner (List L1, List L2, int X);
+void ChangeOwner (TBangunan TB, List L1, List L2, int X);
 /* I.S. Bangunan B elemen L1 (milik pemain 1) */
 /* F.S. Bangunan B menjadi milik pemain 2. Maka: */
 /* 	Bangunan dihapus dari L1 dan ditambahkan ke L2 terakhir */

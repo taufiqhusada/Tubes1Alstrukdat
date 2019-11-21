@@ -23,10 +23,18 @@ boolean IsFullStack(Stack S){
 /* Mengirim true jika tabel penampung NilStackai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack(Stack * S, int jumlahPush, BANGUNAN bChange){
+void PushStack(Stack * S, char tipeEl, BANGUNAN bChange){
 	TopStack(*S)++;
-	InfoTopJumlahPush(*S) = jumlahPush;
+	InfoTopTipeEl(*S) = tipeEl;
 	InfoTopBangunan(*S) = bChange;
+}
+
+void PushStackConquered(Stack *S, char tipeEl, BANGUNAN bChange, int listAsal, int idxList ){
+	TopStack(*S)++;
+	InfoTopTipeEl(*S) = tipeEl;
+	InfoTopBangunan(*S) = bChange;
+	InfoTop(*S).asalList = listAsal;
+	InfoTop(*S).posList = idxList;
 }
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */

@@ -25,10 +25,10 @@ void Init(Player *P);
 void printSkill(Player P);
 // print list skill yg available oleh player tertentu
 
-void printBangunan(Player P);
+void printBangunan(Player P, TBangunan TB);
 // print list bangunan oleh player tertentu
 
-void printAllState(Player P);
+//void printAllState(Player P);
 // 
 
 void Undo(Stack *S);
