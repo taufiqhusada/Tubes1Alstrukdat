@@ -14,6 +14,7 @@
 #define MaxCodeLen 5
 /* Definisi elemen dan addressQueue */
 typedef struct  {
+    int skillID;
     char skillCode[MaxCodeLen]; // Nama Skill dengan Code
 } SKILL;
 

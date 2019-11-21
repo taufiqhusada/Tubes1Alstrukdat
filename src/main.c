@@ -32,6 +32,7 @@
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
+boolean IsExtraTurn = false;
 Token CToken;
 int mapheight, mapwidth, B;
 TBangunan TB;
@@ -163,9 +164,6 @@ int main() {
                     if (status){
                         PushStack(&undoStack, 'L', before);
                     }
-                    else{
-                        printf("Bangunan ini tidak bisa di level-up\n");
-                    }
                 }
                 else{
                     printf("Daftar bangunan: \n");
@@ -179,9 +177,6 @@ int main() {
                     LevelUp(&Bgn(TB,pos), &status);   
                     if (status){
                         PushStack(&undoStack, 'L', before);
-                    }
-                    else{
-                        printf("Bangunan ini tidak bisa di level-up\n");
                     }
                 }
                 
