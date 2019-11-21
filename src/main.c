@@ -117,13 +117,13 @@ int main() {
         Init(&player1);
         InsVFirst(&player1.listBangunan,TB, 1);
         Bgn(TB,1).owner = 1;
-        printBangunan(player1);
+        printBangunan(player1,TB);
         
         // inisialisasi player 2
         Init(&player2);
         InsVFirst(&player2.listBangunan,TB, 2);
         Bgn(TB,2).owner = 2;
-        printBangunan(player2);
+        printBangunan(player2,TB);
 
         // inisialisasi stack
         Stack undoStack;        
@@ -132,19 +132,19 @@ int main() {
         while(isRunProgram){
             if (playerTurn==1){
                 AddPasukanAll(player1.listBangunan,TB);
-                printBangunan(player1);
+                printBangunan(player1,TB);
             }
             else{
                 AddPasukanAll(player2.listBangunan,TB);
-                printBangunan(player2);
+                printBangunan(player2,TB);
             }
             printf("Masukkan command: ");
             char inputCommand[20]; 
             scanf("%s", inputCommand);
             
             if (strcmp(inputCommand,"ATTACK")==0){
-                printBangunan(player1);
-                printBangunan(player2);
+                printBangunan(player1,TB);
+                printBangunan(player2,TB);
                 if (playerTurn==1){
                     
                 }
@@ -152,7 +152,7 @@ int main() {
             else if (strcmp(inputCommand,"LEVEL_UP")==0){
                 if (playerTurn==1){
                     printf("Daftar bangunan: \n");
-                    printBangunan(player1);   
+                    printBangunan(player1,TB);   
                     printf("Pilihan bangunan: ");
                     int inputPilihan;
                     scanf("%d", &inputPilihan);
@@ -161,7 +161,7 @@ int main() {
                     copyBangunan(&Bgn(TB,pos), &before);
                     LevelUp(&Bgn(TB,pos), &status);   
                     if (status){
-                        PushStack(&undoStack, 1, before);
+                        PushStack(&undoStack, 'L', before);
                     }
                     else{
                         printf("Bangunan ini tidak bisa di level-up\n");
@@ -169,7 +169,7 @@ int main() {
                 }
                 else{
                     printf("Daftar bangunan: \n");
-                    printBangunan(player2);
+                    printBangunan(player2,TB);
                     printf("Pilihan bangunan: ");
                     int inputPilihan;
                     scanf("%d", &inputPilihan);
@@ -178,7 +178,7 @@ int main() {
                     copyBangunan(&Bgn(TB,pos), &before);
                     LevelUp(&Bgn(TB,pos), &status);   
                     if (status){
-                        PushStack(&undoStack, 1, before);
+                        PushStack(&undoStack, 'L', before);
                     }
                     else{
                         printf("Bangunan ini tidak bisa di level-up\n");
@@ -205,13 +205,45 @@ int main() {
                 if (IsEmptyStack(undoStack)){
                     printf("Tidak bisa undo, stack kosong\n");
                 }   
-                else if (InfoTopJumlahPush(undoStack)==1){
+                else if (InfoTopTipeEl(undoStack)=='L'){
                     BANGUNAN hasilUndo;
                     PopStack(&undoStack, &hasilUndo);
                     int pos = hasilUndo.idxArray;
                     copyBangunan(&hasilUndo,&Bgn(TB,pos));
                 }
-                else{// pop 2 kali
+                else if (InfoTopTipeEl(undoStack)=='M'){
+                    BANGUNAN hasilUndo1;
+                    PopStack(&undoStack, &hasilUndo1);
+                    int pos1 = hasilUndo1.idxArray;
+                    copyBangunan(&hasilUndo1,&Bgn(TB,pos1));
+
+                    BANGUNAN hasilUndo2;
+                    PopStack(&undoStack, &hasilUndo2);
+                    int pos2 = hasilUndo2.idxArray;
+                    copyBangunan(&hasilUndo2,&Bgn(TB,pos2));
+                }
+                else if (InfoTopTipeEl(undoStack)=='C'){ // attack and conquered
+                    // bangunan yang ter-conquered
+                    BANGUNAN hasilUndo1;
+                    int listAsal = InfoTop(undoStack).asalList;
+                    int idxList = InfoTop(undoStack).posList; 
+                    PopStack(&undoStack, &hasilUndo1);
+                    int pos1 = hasilUndo1.idxArray;
+                    copyBangunan(&hasilUndo1,&Bgn(TB,pos1));
+                    if (listAsal==1){
+                        ChangeOwner(TB,player2.listBangunan, player1.listBangunan,idxList);
+                    }
+                    else{
+                        ChangeOwner(TB,player1.listBangunan, player2.listBangunan,idxList);
+                    }
+                    
+                    // bangunan yang sebelumnya menyerang
+                    BANGUNAN hasilUndo2;
+                    PopStack(&undoStack, &hasilUndo2);
+                    int pos2 = hasilUndo2.idxArray;
+                    copyBangunan(&hasilUndo2,&Bgn(TB,pos2));
+                }
+                else{   // attack but not conquered
                     BANGUNAN hasilUndo1;
                     PopStack(&undoStack, &hasilUndo1);
                     int pos1 = hasilUndo1.idxArray;
@@ -230,7 +262,7 @@ int main() {
                 //printf("%s", inputCommand); 
                 if (playerTurn==1){
                     printf("Daftar bangunan:\n");
-                    printBangunan(player1);   
+                    printBangunan(player1, TB);   
                     printf("Pilih bangunan: ");
                     int inputPilihan;
                     scanf("%d", &inputPilihan);
@@ -258,13 +290,13 @@ int main() {
                     copyBangunan(&Bgn(TB,BMenerima), &before2);
                     Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
                     if (status){
-                        PushStack(&undoStack, 2, before1);
-                        PushStack(&undoStack, 2, before2);
+                        PushStack(&undoStack, 'M', before1);
+                        PushStack(&undoStack, 'M', before2);
                     }
                 }
                 else{
                     printf("Daftar bangunan:\n");
-                    printBangunan(player2);   
+                    printBangunan(player2,TB);   
                     printf("Pilih bangunan: ");
                     int inputPilihan;
                     scanf("%d", &inputPilihan);
@@ -292,8 +324,8 @@ int main() {
                     copyBangunan(&Bgn(TB,BMenerima), &before2);
                     Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
                     if (status){
-                        PushStack(&undoStack, 2, before1);
-                        PushStack(&undoStack, 2, before2);
+                        PushStack(&undoStack, 'M', before1);
+                        PushStack(&undoStack, 'M', before2);
                     }
                 }
             }

@@ -9,15 +9,16 @@ void Init(Player *P){
     CreateEmptyList(&(*P).listBangunan);
 }
 
-void printBangunan(Player P){
-    PrintInfo(P.listBangunan);
+void printBangunan(Player P, TBangunan TB){
+    PrintInfo(P.listBangunan, TB);
 }
 
 void printSkill(Player P){
     printf("%s", InfoHeadQueue(P.qSkillPlayer));
 }
-
+/* 
 void printAllState(Player P){
     printBangunan(P);
     printSkill(P);
 }
+*/

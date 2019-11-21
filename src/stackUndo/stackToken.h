@@ -12,7 +12,9 @@
 
 typedef struct 
 {
-	int jumlahPush;
+	char tipeEl;
+  int posList;    // untuk bangunan yang ter-conquered, sebelumnya ada di index berapa saat di list
+  int asalList;   // untuk bangunan yang ter-conquered, sebelumnya ada di list mana
 	BANGUNAN bangunanChange;
 }infotypeStack;
 typedef int addressStack;   /* indeks tabel */
@@ -32,7 +34,7 @@ typedef struct {
 /* Definisi akses dengan Selektor : Set dan Get */
 #define TopStack(S) (S).TOP
 #define InfoTop(S) (S).T[(S).TOP]
-#define InfoTopJumlahPush(S) (S).T[(S).TOP].jumlahPush
+#define InfoTopTipeEl(S) (S).T[(S).TOP].tipeEl
 #define InfoTopBangunan(S) (S).T[(S).TOP].bangunanChange
 
 /* ************ Prototype ************ */
@@ -50,10 +52,11 @@ boolean IsFullStack(Stack S);
 /* Mengirim true jika tabel penampung Nilai elemen stack penuh */
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack(Stack * S, int jumlahPush, BANGUNAN bChange);
+void PushStack(Stack * S, char tipeEl, BANGUNAN bChange);
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
+void PushStackConquered(Stack *S, char tipeEl, BANGUNAN bChange, int listAsal, int idxList );
 
 /* ************ Menghapus sebuah elemen Stack ************ */
 void PopStack(Stack * S, BANGUNAN* X);
