@@ -130,6 +130,8 @@ int main() {
         Stack undoStack;        
         boolean status;     // untuk mengecek apakah proses command berhasil atau tidak, jika berhasil maka dimasukkan ke stack
         CreateEmptyStack(&undoStack);
+
+        // memulai permainan
         while(isRunProgram){
             
             char inputCommand[20]; 
@@ -139,7 +141,44 @@ int main() {
                 printBangunan(player1);
                 printBangunan(player2);
                 if (playerTurn==1){
-                    
+                    printBangunan(player1);
+                    int inputPenyerang;
+                    printf("Pilih bangunan yang akan menyerang: ");
+                    scanf("%d", &inputPenyerang);
+                    int attacking = GoTo(player1.listBangunan, inputPenyerang) -> i;
+                    sizeArr = 0;
+                    FindAllAdj(L, attacking, &arrResult, &sizeArr);
+                    int j;
+                    for (j = 1; j <= sizeArr; j++) {
+                        if (Bgn(TB, arrResult[j]).owner==2) {
+                            printf("%d. ", Bgn(TB, arrResult[j]).idxArray);
+                            TulisDataBangunan(Bgn(TB, arrResult[j]));
+                            printf("\n");
+                        }
+                    }
+                    printf("Pilih bangunan yang akan diserang: ");
+                    int inputDiserang;
+                    scanf("%d", &inputDiserang);
+                    int jumPasukan;
+                    printf("Jumlah pasukan yang akan menyerang: ");
+                    scanf("%d", &jumPasukan);
+                    // validasi jumlah pasukan yang menyerang
+                    while (jumPasukan > attacking.nbPas) {
+                        printf("Jumlah pasukan bangunan tidak sebanyak itu. \n");
+                        printf("Silakan masukan kembali jumlah pasukan: ");
+                        scanf("%d", &jumPasukan);
+                    }
+
+                    // mendapat skill extra turn
+                    // jika yang direbut adalah fort
+                    if (type(*B) == 'F') {
+                        AddQueue(player2).qSkillPlayer, "ET");
+                    }
+
+                    // mendapat skill barrage
+                    if (NbBangunan(listBangunan(player1) == 10) {
+                        AddQueue(player2.qSkillPlayer, "B");
+                    }
                 }
             }
             else if (strcmp(inputCommand,"LEVEL_UP")==0){
@@ -211,6 +250,36 @@ int main() {
                 }
             }
             else if (strcmp(inputCommand,"END_TURN")==0){
+            // mendapatkan skill instant reinforcement
+            // jika semua bangunannya berlevel 4
+
+            // cek player
+            if (playerTurn == 1) {}
+                adrBgn P = listBangunan(player1);
+            }
+            else {
+                adrBgn P = listBangunan(player2);
+            }
+
+            // cek bangunan
+            boolean allmax = true;
+            while (!allmax && P != Nil) {
+                if (level(Bgn(TB(P), I(P)) != 4) {
+                    allmax = false;
+                }
+                else {
+                    P = Next(P);
+                }
+
+            // menambah skill jika semua berlevel 4
+            if (allmax && playerTurn == 1) {
+                AddQueue(player1.qSkillPlayer, "IR");
+            }
+            else if (allmax && playerTurn == 2) {
+                AddQueue(player2.qSkillPlayer, "IR");
+            }
+
+            // mengganti turn
                 playerTurn ^= 3;
             }
             else if (strcmp(inputCommand,"MOVE")==0){
