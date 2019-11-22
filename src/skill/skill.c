@@ -240,6 +240,44 @@ Skill ini menon-aktifkan pertahanan dan shield lawan*/
 
 }
 
-void PrintSkillList(Queue Q);
+void PrintSkillList(Queue Q) {
 /* I.S. Queue Skill terdefinisi */
 /* F.S. Print List Skill */
+    int i, j, queueLen, skillID;
+    char *skillList[] = {"null", "IU", "ET", "IR", "B", "S", "AU", "CH"};
+
+    queueLen = NBElmtQueue(Q);
+
+    if (queueLen == 0) {
+        printf("Skill List Empty.\n");
+    }
+    else {
+
+        i = 1;
+        j = HeadQueue(Q);
+
+        while (i <= queueLen) {
+
+            skillID = (Q).T[j];
+
+            if (i == queueLen) {
+                printf("%s\n", skillList[skillID]);
+            }
+            else {
+                printf("%s, ", skillList[skillID]);
+            }
+
+            i++;
+
+            if (j == TailQueue(Q)) {
+                j = 1;
+            }
+            else {
+                j++;
+            }
+            
+        }
+
+    }
+
+}
