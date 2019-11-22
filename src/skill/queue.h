@@ -15,7 +15,6 @@
 /* Definisi elemen dan addressQueue */
 typedef struct  {
     int skillID;
-    char skillCode[MaxCodeLen]; // Nama Skill dengan Code
 } SKILL;
 
 typedef SKILL infotypeQueue;

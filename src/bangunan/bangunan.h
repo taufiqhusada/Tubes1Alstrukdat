@@ -25,7 +25,8 @@ typedef struct {
     int absis;      // letak absis
     int ordinat;    // letak ordinat
     int idxArray;
-    boolean isAdaPertahanan;
+    boolean isAdaPertahanan; // Shield
+	int pertahananDuration; // Durasi pertahanan (max 2 turn lawan) 
 } BANGUNAN;
 
 /* ***** ARRAY BANGUNAN ***** */
@@ -44,6 +45,8 @@ typedef struct {
 #define M(B) (B).M 
 #define P(B) (B).P
 #define U(B) (B).U
+#define S(B) (B).isAdaPertahanan
+#define SDur(B) (B).pertahananDuration
 // array
 #define Bgn(T, i) (T).TB[(i)]
 // letak
