@@ -24,7 +24,7 @@ void addSkill(Queue *Q, int skillID) {
 	}
 }
 
-void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IU
+void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
     SKILL SklOut;
@@ -62,14 +62,14 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IU
 }
 
 
-void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill Code = ET
+void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill ID = 2
 /* I.S. Turn berakhir dengan Pemain X telah menggunakan Skill ExtraTurn */
 /* F.S. Turn Selanjutnya dilanjutkan oleh Pemain X */
     *IsExtraTurn = true;
 
 }
 
-void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IR
+void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
 /* I.S. Semua bangunan milik pemain sudah menjadi level 4 */
 /* F.S. Semua bangunan mendapatkan tambahan 5 pasukan */
     SKILL SklOut;
@@ -103,7 +103,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill Code = I
     else { // Owner Pemain 2
 
         for (i = 1; i <= 30; i++) { // Iterasi Cek Semua bangunan
-            if (owner(Bgn(*T, i)) == 1) {
+            if (owner(Bgn(*T, i)) == 2) {
                
                 if (level(Bgn(*T, i)) != 4) {
                     // +5 Army Here
@@ -127,7 +127,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill Code = I
 
 }
 
-void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill Code = B
+void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
 /* I.S. Bangunan Pemain baru saja menjadi 10 bangunan */
 /* F.S. Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 */
     SKILL SklOut;
@@ -181,20 +181,55 @@ void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill Code = B
 
 // BONUS
 
-void Shield(Queue *Q); // Skill Code = S
+void Shield(Queue *Q) { // Skill ID = 5
 /* I.S. Pemain mendapatkan skill jika setelah sebuah lawan menyerang, bangunan pemain
 berkurang 1 menjadi sisa 2 */
 /* F.S. Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama
 2 turn LAWAN. Jika skill digunakan 2 kali berturut-turut, durasi tidak akan bertambah,
 namun menjadi nilai maksimum */
+	SKILL SklOut;
+	int i;
 
-void AttackUp(Queue *Q); // Skill Code = AU
+	Del(Q, SklOut);
+
+	if (Owner == 1) { // Owner Pemain 1
+		for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
+			if (owner(Bgn(*T, i)) == 1) {
+				
+				// Add Shield Here
+				S(Bgn(*T, i)) = true;
+				SDur(Bgn(*T, i)) = 2;	
+
+			}
+
+
+		}
+	} // End of if
+
+	else { // Owner Pemain 2
+
+		for (i = 1; i <= 30; i++) { // Iterasi Cek Semua bangunan
+			if (owner(Bgn(*T, i)) == 2) {
+				
+				// Add Shield Here
+				S(Bgn(*T, i)) = true;
+				SDur(Bgn(*T, i)) = 2;
+
+			}
+		}
+
+	} // End of Else
+
+
+}
+
+void AttackUp(Queue *Q); // Skill ID = 6
 /* I.S. Pemain mendapatkan skill ini jika pemain baru saja menyerang tower lawan dan
 jumlah towernya menjadi 3 */
 /* F.S. Jika Pemain menyerang lawan, Pertahanan lawan termasuk shield tidak 
 akan mempengaruhi penyerangan */
 
-void CriticalHit(Queue *Q); // Skill Code = CH
+void CriticalHit(Queue *Q); // Skill ID = 7
 /* I.S. Pemain mendapatkan skill ini jika lawan baru saja mengaktifkan Extra Turn */
 /* F.S. Untuk 1 serangan Pemain setelah skill ini diaktifkan, Jumlah pasukan pada
 bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
