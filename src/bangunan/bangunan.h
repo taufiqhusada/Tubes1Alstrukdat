@@ -45,6 +45,8 @@ typedef struct {
 #define M(B) (B).M 
 #define P(B) (B).P
 #define U(B) (B).U
+#define S(B) (B).isAdaPertahanan
+#define SDur(B) (B).pertahananDuration
 // array
 #define Bgn(T, i) (T).TB[(i)]
 // letak
