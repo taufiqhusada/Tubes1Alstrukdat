@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "mesinkataSTDIN/mesinkataSTDIN.h"
 #include "pcolor/pcolor.h"
 #include "konfig/boolean.h"
 #include "konfig/mesinkar.h"
@@ -133,9 +134,10 @@ int main() {
         Stack undoStack;        
         boolean status;     // untuk mengecek apakah proses command berhasil atau tidak, jika berhasil maka dimasukkan ke stack
         CreateEmptyStack(&undoStack);
-
+       
         // memulai permainan
         while(isRunProgram){
+            printf("\n");
             if (playerTurn==1){
                 AddPasukanAll(player1.listBangunan,TB);
                 printBangunan(player1,TB);
@@ -144,11 +146,14 @@ int main() {
                 AddPasukanAll(player2.listBangunan,TB);
                 printBangunan(player2,TB);
             }
-            printf("Masukkan command: ");
-            char inputCommand[20]; 
-            scanf("%s", inputCommand);
             
-            if (strcmp(inputCommand,"ATTACK")==0){
+            printf("Masukkan command: ");
+            scanf("\n");
+            STARTKATASTDIN();
+           
+            //printf(" ");
+            
+            if (CompareKata(CKataSTDIN,"ATTACK")){
                 printBangunan(player1,TB);
                 printBangunan(player2,TB);
                 if (playerTurn==1){
@@ -194,7 +199,8 @@ int main() {
                     */
                 }
             }
-            else if (strcmp(inputCommand,"LEVEL_UP")==0){
+            else if (CompareKata(CKataSTDIN,"LEVELUP")){
+                //printf("ini level up\n");
                 if (playerTurn==1){
                     printf("Daftar bangunan: \n");
                     printBangunan(player1,TB);   
@@ -225,7 +231,7 @@ int main() {
                 }
                 
             }
-            else if (strcmp(inputCommand,"SKILL")==0){
+            else if (CompareKata(CKataSTDIN,"SKILL")){
                 if (playerTurn==1) {
                     printSkill(player1);
                     if (!IsEmptyQueue(player1.qSkillPlayer)){
@@ -240,7 +246,7 @@ int main() {
                 }
             
             }
-            else if (strcmp(inputCommand,"UNDO")==0){
+            else if (CompareKata(CKataSTDIN,"UNDO")){
                 if (IsEmptyStack(undoStack)){
                     printf("Tidak bisa undo, stack kosong\n");
                 }   
@@ -294,7 +300,7 @@ int main() {
                     copyBangunan(&hasilUndo2,&Bgn(TB,pos2));
                 }
             }
-            else if (strcmp(inputCommand,"END_TURN")==0){
+            else if (CompareKata(CKataSTDIN,"ENDTURN")){
                 // mendapatkan skill instant reinforcement
                 // jika semua bangunannya berlevel 4
 
@@ -331,7 +337,7 @@ int main() {
                 // mengganti turn
                 playerTurn ^= 3;
             }
-            else if (strcmp(inputCommand,"MOVE")==0){
+            else if (CompareKata(CKataSTDIN,"MOVE")){
                 //printf("%s", inputCommand); 
                 if (playerTurn==1){
                     printf("Daftar bangunan:\n");
@@ -343,28 +349,41 @@ int main() {
                     sizeArr = 0;
                     FindAllAdj(L,pos,&arrResult,&sizeArr);
                     int j;
-                    printf("Daftar bangunan terdekat yang dimiliki:\n");
+                    printf("%d\n",sizeArr);
+                    boolean adaBangunanTerdekat = false;
                     for (j = 1; j<=sizeArr; ++j){
                         if (Bgn(TB,arrResult[j]).owner==1){
-                            printf("%d. ", Bgn(TB,arrResult[j]).idxArray);
-                            TulisDataBangunan(Bgn(TB,arrResult[j]));
-                            printf("\n");   
+                            adaBangunanTerdekat = true;
                         }
                     }
-                    printf("Bangunan yang akan menerima: ");
-                    int BMenerima;
-                    scanf("%d",&BMenerima);
-                    int jumPasukan;
-                    printf("Jumlah pasukan: ");
-                    scanf("%d", &jumPasukan);
-                    BANGUNAN before1;
-                    BANGUNAN before2;
-                    copyBangunan(&Bgn(TB,pos), &before1);
-                    copyBangunan(&Bgn(TB,BMenerima), &before2);
-                    Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
-                    if (status){
-                        PushStack(&undoStack, 'M', before1);
-                        PushStack(&undoStack, 'M', before2);
+
+                    if (!adaBangunanTerdekat){
+                        printf("Tidak ada bangunan terdekat lain yang dimiliki \n");
+                    }
+                    else{
+                        printf("Daftar bangunan terdekat yang dimiliki:\n");
+                        for (j = 1; j<=sizeArr; ++j){
+                            if (Bgn(TB,arrResult[j]).owner==1){
+                                printf("%d. ", Bgn(TB,arrResult[j]).idxArray);
+                                TulisDataBangunan(Bgn(TB,arrResult[j]));
+                                printf("\n");   
+                            }
+                        }
+                        printf("Bangunan yang akan menerima: ");
+                        int BMenerima;
+                        scanf("%d",&BMenerima);
+                        int jumPasukan;
+                        printf("Jumlah pasukan: ");
+                        scanf("%d", &jumPasukan);
+                        BANGUNAN before1;
+                        BANGUNAN before2;
+                        copyBangunan(&Bgn(TB,pos), &before1);
+                        copyBangunan(&Bgn(TB,BMenerima), &before2);
+                        Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
+                        if (status){
+                            PushStack(&undoStack, 'M', before1);
+                            PushStack(&undoStack, 'M', before2);
+                        }
                     }
                 }
                 else{
@@ -377,32 +396,44 @@ int main() {
                     sizeArr = 0;
                     FindAllAdj(L,pos,&arrResult,&sizeArr);
                     int j;
-                    printf("Daftar bangunan terdekat yang dimiliki:\n");
+                    boolean adaBangunanTerdekat = false;
                     for (j = 1; j<=sizeArr; ++j){
                         if (Bgn(TB,arrResult[j]).owner==2){
-                            printf("%d. ", Bgn(TB,arrResult[j]).idxArray);
-                            TulisDataBangunan(Bgn(TB,arrResult[j]));
-                            printf("\n");   
+                            adaBangunanTerdekat = true;
                         }
                     }
-                    printf("Bangunan yang akan menerima: ");
-                    int BMenerima;
-                    scanf("%d",&BMenerima);
-                    int jumPasukan;
-                    printf("Jumlah pasukan: ");
-                    scanf("%d", &jumPasukan);
-                    BANGUNAN before1;
-                    BANGUNAN before2;
-                    copyBangunan(&Bgn(TB,pos), &before1);
-                    copyBangunan(&Bgn(TB,BMenerima), &before2);
-                    Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
-                    if (status){
-                        PushStack(&undoStack, 'M', before1);
-                        PushStack(&undoStack, 'M', before2);
+
+                    if (!adaBangunanTerdekat){
+                        printf("Tidak ada bangunan terdekat lain yang dimiliki \n");
+                    }
+                    else {
+                        printf("Daftar bangunan terdekat yang dimiliki:\n");
+                        for (j = 1; j<=sizeArr; ++j){
+                            if (Bgn(TB,arrResult[j]).owner==2){
+                                printf("%d. ", Bgn(TB,arrResult[j]).idxArray);
+                                TulisDataBangunan(Bgn(TB,arrResult[j]));
+                                printf("\n");   
+                            }
+                        }
+                        printf("Bangunan yang akan menerima: ");
+                        int BMenerima;
+                        scanf("%d",&BMenerima);
+                        int jumPasukan;
+                        printf("Jumlah pasukan: ");
+                        scanf("%d", &jumPasukan);
+                        BANGUNAN before1;
+                        BANGUNAN before2;
+                        copyBangunan(&Bgn(TB,pos), &before1);
+                        copyBangunan(&Bgn(TB,BMenerima), &before2);
+                        Move(L,&Bgn(TB,pos), &Bgn(TB,BMenerima), jumPasukan, &status);
+                        if (status){
+                            PushStack(&undoStack, 'M', before1);
+                            PushStack(&undoStack, 'M', before2);
+                        }
                     }
                 }
             }
-            else if (strcmp(inputCommand,"EXIT")==0){
+            else if (CompareKata(CKataSTDIN,"EXIT")){
                 isRunProgram = false;
             }
             else{
