@@ -223,14 +223,19 @@ namun menjadi nilai maksimum */
 
 }
 
-void AttackUp(Queue *Q); // Skill ID = 6
+void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6
 /* I.S. Pemain mendapatkan skill ini jika pemain baru saja menyerang tower lawan dan
 jumlah towernya menjadi 3 */
 /* F.S. Jika Pemain menyerang lawan, Pertahanan lawan termasuk shield tidak 
 akan mempengaruhi penyerangan */
+    *IsAttackUp = true;
+}
 
-void CriticalHit(Queue *Q); // Skill ID = 7
+void CriticalHit(Queue *Q, boolean *IsCriticalHit) { // Skill ID = 7
 /* I.S. Pemain mendapatkan skill ini jika lawan baru saja mengaktifkan Extra Turn */
 /* F.S. Untuk 1 serangan Pemain setelah skill ini diaktifkan, Jumlah pasukan pada
 bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
 Skill ini menon-aktifkan pertahanan dan shield lawan*/
+    *IsCriticalHit = true;
+
+}
