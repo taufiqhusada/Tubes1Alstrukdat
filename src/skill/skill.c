@@ -50,9 +50,12 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IU
 }
 
 
-void ExtraTurn(Queue *Q); // Skill Code = ET
+void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill Code = ET
 /* I.S. Turn berakhir dengan Pemain X telah menggunakan Skill ExtraTurn */
 /* F.S. Turn Selanjutnya dilanjutkan oleh Pemain X */
+    *IsExtraTurn = true;
+
+}
 
 void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IR
 /* I.S. Semua bangunan milik pemain sudah menjadi level 4 */
