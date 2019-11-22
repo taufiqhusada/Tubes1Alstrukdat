@@ -239,3 +239,7 @@ Skill ini menon-aktifkan pertahanan dan shield lawan*/
     *IsCriticalHit = true;
 
 }
+
+void PrintSkillList(Queue Q);
+/* I.S. Queue Skill terdefinisi */
+/* F.S. Print List Skill */

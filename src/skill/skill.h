@@ -57,7 +57,9 @@ void CriticalHit(Queue *Q); // Skill Code = CH
 bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
 Skill ini menon-aktifkan pertahanan dan shield lawan*/
 
-
+void PrintSkillList(Queue Q);
+/* I.S. Queue Skill terdefinisi */
+/* F.S. Print List Skill */
 
 #endif
 
