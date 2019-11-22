@@ -13,9 +13,7 @@
 
 
 
-#define HeadSklCode(Q) (Q).T[(Q).HEAD].skillCode
 #define HeadSklID(Q) (Q).T[(Q).HEAD].skillID
-#define SkillCode(X) (X).skillCode
 #define SkillID(X) (X).skillID
 
 // List Skill akan bertipe Queue

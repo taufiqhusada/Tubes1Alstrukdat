@@ -6,10 +6,22 @@
 #include "skill.h"
 #include "../bangunan/bangunan.h"
 
-void addSkill (Queue *Q, infotypeQueue X) {
-/* I.S. X adalah skill dan Q terdefisini */
-/* F.S. X dimasukkan kedalam Queue dan TailQueue(Q) = X */
-    AddQueue(Q, X);
+void addSkill(Queue *Q, int skillID) {
+	/* I.S. X adalah skill dan Q terdefisini */
+	/* F.S. X dimasukkan kedalam Queue dan TailQueue(Q) = X */
+	SKILL X;
+	int queueLen;
+
+	SkillID(X) = skillID;
+
+	queueLen = NBElmtQueue(*Q);
+
+	if (queueLen <= 10) {
+		AddQueue(Q, X);
+	}
+	else {
+		// Queue Skill Penuh
+	}
 }
 
 void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill Code = IU
