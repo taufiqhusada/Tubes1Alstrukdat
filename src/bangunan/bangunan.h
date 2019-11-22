@@ -25,7 +25,8 @@ typedef struct {
     int absis;      // letak absis
     int ordinat;    // letak ordinat
     int idxArray;
-    boolean isAdaPertahanan;
+    boolean isAdaPertahanan; // Shield
+	int pertahananDuration; // Durasi pertahanan (max 2 turn lawan) 
 } BANGUNAN;
 
 /* ***** ARRAY BANGUNAN ***** */
