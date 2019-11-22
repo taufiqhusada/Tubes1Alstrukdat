@@ -14,7 +14,7 @@ typedef int indeks; /* indeks baris, kolom */
 typedef char ElType;
 
 typedef struct {
-    BANGUNAN Mem[BrsMax+1][KolMax+1];
+    int Mem[BrsMax+1][KolMax+1];
     int NBrsEff; /* banyaknya/ukuran baris yg terdefinisi */
     int NKolEff; /* banyaknya/ukuran kolom yg terdefinisi */
 } MATRIKS;
@@ -45,7 +45,7 @@ indeks GetLastIdxKol (MATRIKS M);
 /* Mengirimkan indeks kolom terbesar M */
 boolean IsIdxEff (MATRIKS M, indeks i, indeks j);
 /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
-ElType GetElmtDiagonal (MATRIKS M, indeks i);
+//ElType GetElmtDiagonal (MATRIKS M, indeks i);
 /* Mengirimkan elemen M(i,i) */
 
 /* ********** Assignment  MATRIKS ********** */
@@ -53,7 +53,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl);
 /* Melakukan assignment MHsl  MIn */
 
 /* ********** KELOMPOK BACA/TULIS ********** */
-void BacaMATRIKS (MATRIKS * M, int NB, int NK);
+//void BacaMATRIKS (MATRIKS * M, int NB, int NK);
 /* I.S. IsIdxValid(NB,NK) */
 /* F.S. M terdefinisi nilai elemen efektifnya, berukuran NB x NK */
 /* Proses: Melakukan MakeMATRIKS(M,NB,NK) dan mengisi nilai efektifnya */
@@ -63,7 +63,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK);
 4 5 6
 8 9 10
 */
-void TulisMATRIKS (MATRIKS M);
+void TulisMATRIKS (MATRIKS M, TBangunan TB);
 /* I.S. M terdefinisi */
 /* F.S. Nilai M(i,j) ditulis ke layar per baris per kolom, masing-masing elemen per baris
    dipisahkan sebuah spasi */

@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "pcolor/pcolor.h"
 #include "konfig/boolean.h"
 #include "konfig/mesinkar.h"
 #include "konfig/mesintoken.h"
@@ -69,10 +70,10 @@ int main() {
             ordinat(Bgn(TB, i)) = CToken.val;
             CreateBangunan(&Bgn(TB,i));
             ADVTOKEN();
-            Elmt(M,absis(Bgn(TB, i)),ordinat(Bgn(TB, i))) = Bgn(TB,i);
+            Elmt(M,absis(Bgn(TB, i)),ordinat(Bgn(TB, i))) = i;
             printf("[%d] t:%c x:%d y:%d\n", i,type(Bgn(TB, i)), absis(Bgn(TB, i)), ordinat(Bgn(TB, i)));
         }
-        TulisMATRIKS(M);
+        TulisMATRIKS(M,TB);
 
         // Memasukkan connected components ke multilist
         Multilist L;
@@ -126,6 +127,8 @@ int main() {
         Bgn(TB,2).owner = 2;
         printBangunan(player2,TB);
 
+        TulisMATRIKS(M,TB);
+
         // inisialisasi stack
         Stack undoStack;        
         boolean status;     // untuk mengecek apakah proses command berhasil atau tidak, jika berhasil maka dimasukkan ke stack
@@ -149,7 +152,7 @@ int main() {
                 printBangunan(player1,TB);
                 printBangunan(player2,TB);
                 if (playerTurn==1){
-                    printBangunan(player1);
+                    printBangunan(player1, TB);
                     int inputPenyerang;
                     printf("Pilih bangunan yang akan menyerang: ");
                     scanf("%d", &inputPenyerang);
@@ -171,7 +174,7 @@ int main() {
                     printf("Jumlah pasukan yang akan menyerang: ");
                     scanf("%d", &jumPasukan);
                     // validasi jumlah pasukan yang menyerang
-                    while (jumPasukan > attacking.nbPas) {
+                    while (jumPasukan > Bgn(TB,attacking).nbPasukan) {
                         printf("Jumlah pasukan bangunan tidak sebanyak itu. \n");
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
@@ -179,14 +182,16 @@ int main() {
 
                     // mendapat skill extra turn
                     // jika yang direbut adalah fort
+                    /* 
                     if (type(*B) == 'F') {
-                        AddQueue(player2).qSkillPlayer, "ET");
+                        AddQueue(&player2.qSkillPlayer, "ET");
                     }
 
                     // mendapat skill barrage
                     if (NbBangunan(listBangunan(player1) == 10) {
                         AddQueue(player2.qSkillPlayer, "B");
                     }
+                    */
                 }
             }
             else if (strcmp(inputCommand,"LEVEL_UP")==0){
@@ -290,36 +295,40 @@ int main() {
                 }
             }
             else if (strcmp(inputCommand,"END_TURN")==0){
-            // mendapatkan skill instant reinforcement
-            // jika semua bangunannya berlevel 4
+                // mendapatkan skill instant reinforcement
+                // jika semua bangunannya berlevel 4
 
-            // cek player
-            if (playerTurn == 1) {}
-                adrBgn P = listBangunan(player1);
-            }
-            else {
-                adrBgn P = listBangunan(player2);
-            }
-
-            // cek bangunan
-            boolean allmax = true;
-            while (!allmax && P != Nil) {
-                if (level(Bgn(TB(P), I(P)) != 4) {
-                    allmax = false;
+                // cek player
+                adrBgn P;
+                if (playerTurn == 1) {
+                    List LB = listBangunan(player1);
+                    P = (LB).First;
                 }
                 else {
-                    P = Next(P);
+                    List LB = listBangunan(player2);
+                    P = (LB).First;
                 }
 
-            // menambah skill jika semua berlevel 4
-            if (allmax && playerTurn == 1) {
-                AddQueue(player1.qSkillPlayer, "IR");
-            }
-            else if (allmax && playerTurn == 2) {
-                AddQueue(player2.qSkillPlayer, "IR");
-            }
+                // cek bangunan
+                boolean allmax = true;
+                while (!allmax && P != NULL) {
+                    if (level(Bgn(TB, I(P))) != 4) {
+                        allmax = false;
+                    }
+                    else {
+                        P = Next(P);
+                    }
+                }
 
-            // mengganti turn
+                // menambah skill jika semua berlevel 4
+                if (allmax && playerTurn == 1) {
+                    //AddQueue(player1.qSkillPlayer, "IR");
+                }
+                else if (allmax && playerTurn == 2) {
+                    //AddQueue(player2.qSkillPlayer, "IR");
+                }
+
+                // mengganti turn
                 playerTurn ^= 3;
             }
             else if (strcmp(inputCommand,"MOVE")==0){

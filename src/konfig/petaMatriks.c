@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include"../pcolor/pcolor.h"
 #include"petaMatriks.h"
 
 /* NBrsEff <= 1 dan NKolEff <= 1 */
@@ -47,9 +48,11 @@ boolean IsIdxEff (MATRIKS M, indeks i, indeks j){
 	return ((i>=BrsMin && i<=GetLastIdxBrs(M)) && (j>=KolMin && j<=GetLastIdxKol(M)));
 }
 /* Mengirimkan true jika i, j adalah indeks efektif bagi M */
+/* 
 ElType GetElmtDiagonal (MATRIKS M, indeks i){
 	return type(Elmt(M,i,i));
 }
+*/
 /* Mengirimkan elemen M(i,i) */
 
 /* ********** Assignment  MATRIKS ********** */
@@ -66,6 +69,7 @@ void CopyMATRIKS (MATRIKS MIn, MATRIKS * MHsl){
 /* Melakukan assignment MHsl  MIn */
 
 /* ********** KELOMPOK BACA/TULIS ********** */
+/* 
 void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 	ElType x;
 	MakeMATRIKS(NB,NK,M);
@@ -78,6 +82,7 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 		}
 	}
 }
+*/
 /* I.S. IsIdxValid(NB,NK) */
 /* F.S. M terdefinisi nilai elemen efektifnya, berukuran NB x NK */
 /* Proses: Melakukan MakeMATRIKS(M,NB,NK) dan mengisi nilai efektifnya */
@@ -87,22 +92,30 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 4 5 6
 8 9 10
 */
-void TulisMATRIKS (MATRIKS M){
+void TulisMATRIKS (MATRIKS M, TBangunan TB){
 	if (M.NBrsEff==0 || M.NKolEff==0) return;
 	int i,j;
-	for (i =1; i<=GetLastIdxBrs(M)+1; ++i){
+	for (i =1; i<=GetLastIdxKol(M)+1; ++i){
 		printf("* ");
 	}
 	printf("\n");
 	for (i=1; i<=GetLastIdxBrs(M); ++i){
 		printf("*");
 		for (j = 1; j<=GetLastIdxKol(M); ++j){
-			printf("%c",Elmt(M,i,j));
+			if (Bgn(TB,Elmt(M,i,j)).owner==1){
+				print_red(Bgn(TB,Elmt(M,i,j)).type);
+			}
+			else if(Bgn(TB,Elmt(M,i,j)).owner==2) {
+				print_green(Bgn(TB,Elmt(M,i,j)).type);
+			}
+			else{
+				printf("%c",(Bgn(TB,Elmt(M,i,j)).type));
+			}
 			if (j<GetLastIdxKol(M)) printf(" ");	
 		}
 		printf("*\n");
 	}
-	for (i =1; i<=GetLastIdxBrs(M)+1; ++i){
+	for (i =1; i<=GetLastIdxKol(M)+1; ++i){
 		printf("* ");
 	}
 	printf("\n");

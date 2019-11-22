@@ -16,7 +16,7 @@ typedef struct
 
 #define qSkillPlayer(P) (P).qSkillPlayer
 #define stackPlayer(P) (P).stackPlayer
-#define listBangunan(P) (P).LBangunant
+#define listBangunan(P) (P).listBangunan
 
 
 void Init(Player *P);
