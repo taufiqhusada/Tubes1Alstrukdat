@@ -34,7 +34,9 @@
 
 /* VARIABEL GLOBAL */
 boolean EndToken;
-boolean IsExtraTurn = false;
+boolean IsExtraTurnP1, IsExtraTurnP2 = false;
+boolean IsAttackUpP1, IsAttackUpP2 = false;
+boolean IsCriticalHitP1, IsCriticalHitP2 = false;
 Token CToken;
 int mapheight, mapwidth, B;
 TBangunan TB;
