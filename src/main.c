@@ -117,18 +117,24 @@ int main() {
         int playerTurn = 1;
         Player player1;
         Player player2;
+        Queue skill1;
+        Queue skill2;
 
         // inisialisasi player 1
         Init(&player1);
         InsVFirst(&player1.listBangunan,TB, 1);
         Bgn(TB,1).owner = 1;
         printBangunan(player1,TB);
+        CreateEmptyQueue(&skill1, MaxQueue);
+        addSkill(&skill1, 1);
         
         // inisialisasi player 2
         Init(&player2);
         InsVFirst(&player2.listBangunan,TB, 2);
         Bgn(TB,2).owner = 2;
         printBangunan(player2,TB);
+        CreateEmptyQueue(&skill2, MaxQueue);
+        addSkill(&skill2, 1);
 
         TulisMATRIKS(M,TB);
 
