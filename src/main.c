@@ -196,12 +196,12 @@ int main() {
                         scanf("%d", &jumPasukan);
                     }
 
-                    if (P(Bgn(TB, diserang))){
+                    if (P(Bgn(TB, diserang)) || (shield2 > 0)){
                         if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
                             Bgn(TB,diserang).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);                        
                             ChangeOwner(TB, player2.listBangunan, player1.listBangunan, inputDiserang);
                         } else {
-                            Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (0.75 * jumPasukan);
+                            Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4));
                         }
                     } else {
                         if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
