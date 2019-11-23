@@ -39,7 +39,7 @@ boolean IsExtraTurnP1, IsExtraTurnP2 = false;
 boolean IsAttackUpP1, IsAttackUpP2 = false;
 boolean IsCriticalHitP1, IsCriticalHitP2 = false;
 Token CToken;
-int mapheight, mapwidth, B;
+int mapheight, mapwidth, B, shield1, shield2;
 TBangunan TB;
 
 int main() {
@@ -52,6 +52,7 @@ int main() {
 
     /* ALGORITMA */
         // membaca tinggi, lebar, dan jumlah bangunan
+        printf("1");
         STARTTOKEN();
         mapheight = CToken.val;
         ADVTOKEN();
@@ -59,13 +60,14 @@ int main() {
         ADVTOKEN();
         B = CToken.val;
         ADVTOKEN();
-        printf("w:%d h:%d B:%d\n", mapheight, mapwidth, B);
+        printf("width: %d | height: %d | Bangunan: %d\n", mapheight, mapwidth, B);
 
         // insisialisasi matriks untuk menyimpan peta
         MATRIKS M;
         MakeMATRIKS(mapheight,mapwidth,&M);
 
         // membaca data bangunan sebanyak B
+        printf("[ TIPE DAN LETAK BANGUNAN ]\n");
         for (i = 1; i <= B; i++) { 
             Bgn(TB,i).idxArray = i;
             type(Bgn(TB, i)) = CToken.bgn;
@@ -78,7 +80,7 @@ int main() {
             Elmt(M,absis(Bgn(TB, i)),ordinat(Bgn(TB, i))) = i;
             printf("[%d] t:%c x:%d y:%d\n", i,type(Bgn(TB, i)), absis(Bgn(TB, i)), ordinat(Bgn(TB, i)));
         }
-        TulisMATRIKS(M,TB);
+        // TulisMATRIKS(M,TB);
 
         // Memasukkan connected components ke multilist
         Multilist L;
@@ -100,7 +102,7 @@ int main() {
         int *arrResult = (int*) malloc(100*sizeof(int));
         int sizeArr = 0;
         for (i = 1; i<=B; ++i){
-            printf("%d -> \n", i);
+            printf("%d -> ", i);
             FindAllAdj(L,i,&arrResult,&sizeArr);
             if (sizeArr==0){
                 printf("do not have any adj node\n");
@@ -126,7 +128,9 @@ int main() {
         Init(&player1);
         InsVFirst(&player1.listBangunan,TB, 1);
         Bgn(TB,1).owner = 1;
+        printf("Bangunan player 1: \n");
         printBangunan(player1,TB);
+        printf("\n");
         CreateEmptyQueue(&skill1, MaxQueue);
         addSkill(&skill1, 1);
         
@@ -134,6 +138,7 @@ int main() {
         Init(&player2);
         InsVFirst(&player2.listBangunan,TB, 2);
         Bgn(TB,2).owner = 2;
+        printf("Bangunan player 2: \n");
         printBangunan(player2,TB);
         CreateEmptyQueue(&skill2, MaxQueue);
         addSkill(&skill2, 1);
@@ -164,8 +169,8 @@ int main() {
             //printf(" ");
             
             if (CompareKata(CKataSTDIN,"ATTACK")){
-                printBangunan(player1,TB);
-                printBangunan(player2,TB);
+                // printBangunan(player1,TB);
+                // printBangunan(player2,TB);
                 if (playerTurn == 1){
                     printBangunan(player1, TB);
                     int inputPenyerang;
@@ -185,6 +190,7 @@ int main() {
                     printf("Pilih bangunan yang akan diserang: ");
                     int inputDiserang;
                     scanf("%d", &inputDiserang);
+                    int diserang = inputDiserang;
                     int jumPasukan;
                     printf("Jumlah pasukan yang akan menyerang: ");
                     scanf("%d", &jumPasukan);
@@ -193,47 +199,135 @@ int main() {
                         printf("Jumlah pasukan bangunan tidak sebanyak itu.\n");
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
-
                     }
-
-                    if (jumPasukan >= Bgn(TB,attacking).nbPasukan){
-                        
-                    } else {
-
+                    if (Bgn(TB, diserang).owner!=2){
+                        if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            Bgn(TB,attacking).nbPasukan = jumPasukan - Bgn(TB,diserang).nbPasukan; 
+                            Bgn(TB,diserang).owner = 1;                     
+                            InsVLast(&player1.listBangunan,TB, diserang);
+                        } else {
+                            Bgn(TB,diserang).nbPasukan -= jumPasukan;
+                            Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                        }
                     }
+                    else{
+                        if (P(Bgn(TB, diserang)) || (shield2 > 0)){
+                            if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);  
+                                int posInList = SearchList(player2.listBangunan,inputDiserang);                      
+                                ChangeOwner(TB, player2.listBangunan, player1.listBangunan, posInList);
+                            } else {
+                                Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4);
+                                Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            }
+                        } else {
+                            if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan);  
+                                int posInList = SearchList(player2.listBangunan,inputDiserang);                      
+                                ChangeOwner(TB, player2.listBangunan, player1.listBangunan, posInList);
 
-
-                    //SETELAH ATTACK
-
-                    // dapat skill attack up
-                    if (jumlahtower(player2.listBangunan, TB)==3){
-                        addSkill(&skill1, 6);
-                    }
-
-                    // mendapat skill extra turn
-                    // if (/*attack berhasil && (type(Bgn(T(L),I(L)))=="F")*/) {
-                    //     addSkill(&skill2, 2);
-                    // }
-
-                    // mendapat skill barrage
-                    if (NbBangunan(player1.listBangunan) == 10) {
-                        addSkill(&skill2, 4);
-                    }
-
-                    // mendapat skill shield
-                    if (NbBangunan(player2.listBangunan) == 2) {
-                        addSkill(&skill2, 5);
-                    }
-
-                    // Cek Menang
-                    if (NbBangunan(player2.listBangunan)==0){
-                        printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1");
-                        printf("SELAMAT PLAYER 1 MENANG");
-                        isRunProgram = false;
-
-
+                            } else {
+                                Bgn(TB,diserang).nbPasukan -= jumPasukan;
+                                Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            }
+                        }
                     }
                 }
+                else{
+                    printBangunan(player2, TB);
+                    int inputPenyerang;
+                    printf("Pilih bangunan yang akan menyerang: ");
+                    scanf("%d", &inputPenyerang);
+                    int attacking = GoTo(player2.listBangunan, inputPenyerang) -> i;
+                    sizeArr = 0;
+                    FindAllAdj(L, attacking, &arrResult, &sizeArr);
+                    int j;
+                    for (j = 1; j <= sizeArr; j++) {
+                        if (Bgn(TB, arrResult[j]).owner!=2) {
+                            printf("%d. ", Bgn(TB, arrResult[j]).idxArray);
+                            TulisDataBangunan(Bgn(TB, arrResult[j]));
+                            printf("\n");
+                        }
+                    }
+                    printf("Pilih bangunan yang akan diserang: ");
+                    int inputDiserang;
+                    scanf("%d", &inputDiserang);
+                    int diserang = inputDiserang;
+                    int jumPasukan;
+                    printf("Jumlah pasukan yang akan menyerang: ");
+                    scanf("%d", &jumPasukan);
+                    // validasi jumlah pasukan yang menyerang
+                    while (jumPasukan > Bgn(TB,attacking).nbPasukan) {
+                        printf("Jumlah pasukan bangunan tidak sebanyak itu.\n");
+                        printf("Silakan masukan kembali jumlah pasukan: ");
+                        scanf("%d", &jumPasukan);
+                    }
+                    if (Bgn(TB, diserang).owner!=1){
+                        if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            Bgn(TB,attacking).nbPasukan = jumPasukan - Bgn(TB,diserang).nbPasukan; 
+                            Bgn(TB,diserang).owner = 2;                     
+                            InsVLast(&player2.listBangunan,TB, diserang);
+                        } else {
+                            Bgn(TB,diserang).nbPasukan -= jumPasukan;
+                            Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                        }
+                    }
+                    else{
+                        if (P(Bgn(TB, diserang)) || (shield2 > 0)){
+                            if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);  
+                                int posInList = SearchList(player1.listBangunan,inputDiserang);                      
+                                ChangeOwner(TB, player1.listBangunan, player2.listBangunan, posInList);
+                            } else {
+                                Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4);
+                                Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            }
+                        } else {
+                            if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan);  
+                                int posInList = SearchList(player1.listBangunan,inputDiserang);                      
+                                ChangeOwner(TB, player1.listBangunan, player2.listBangunan, posInList);
+
+                            } else {
+                                Bgn(TB,diserang).nbPasukan -= jumPasukan;
+                                Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            }
+                        }
+                    }
+                }
+                    
+
+                //SETELAH ATTACK
+
+                // dapat skill attack up
+                if (jumlahtower(player2.listBangunan, TB)==3){
+                    addSkill(&skill1, 6);
+                }
+
+                // mendapat skill extra turn
+                // if (/*attack berhasil && (type(Bgn(T(L),I(L)))=="F")*/) {
+                //     addSkill(&skill2, 2);
+                // }
+
+                // mendapat skill barrage
+                if (NbBangunan(player1.listBangunan) == 10) {
+                    addSkill(&skill2, 4);
+                }
+
+                // mendapat skill shield
+                if (NbBangunan(player2.listBangunan) == 2) {
+                    addSkill(&skill2, 5);
+                }
+
+                // Cek Menang
+                if (NbBangunan(player2.listBangunan)==0){
+                    printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1");
+                    printf("SELAMAT PLAYER 1 MENANG");
+                    isRunProgram = false;
+
+
+                }
+                
             }
             else if (CompareKata(CKataSTDIN,"LEVELUP")){
                 //printf("ini level up\n");
@@ -292,7 +386,7 @@ int main() {
                                 break;
 
                             case 5:
-                                Shield(&skill1, playerTurn, &TB);
+                                Shield(&skill1, &shield1);
                                 break;
                             
                             case 6:
@@ -332,7 +426,7 @@ int main() {
                                 break;
 
                             case 5:
-                                Shield(&skill2, playerTurn, &TB);
+                                Shield(&skill2, &shield2);
                                 break;
                             
                             case 6:
@@ -444,9 +538,14 @@ int main() {
                 else if (allmax && playerTurn == 2) {
                     addSkill(&skill2, 3);
                 }
-
+                // kurangin shield
+                if (shield2 > 0){
+                    shield2 -= 1;
+                }
                 // mengganti turn
                 playerTurn ^= 3;
+                printf("\n ");
+                printf("[ PEMAIN %d ]", playerTurn);
             }
             else if (CompareKata(CKataSTDIN,"MOVE")){
                 //printf("%s", inputCommand); 

@@ -153,7 +153,7 @@ int jumlahtower(List L, TBangunan T){
 
 
 
-// adrBgn SearchList (List L, int i, int j) {
+int SearchList (List L, int i) {
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan adrBgn elemen tersebut. */
 /* Jika tidak ada, mengirimkan NilLBangunan */
@@ -161,18 +161,20 @@ int jumlahtower(List L, TBangunan T){
 	/* adrBgn P; */
 	/* boolean found; */
 	/* ALGORITMA */
-	/* P = First(L);
-	found = false;
+	adrBgn P = First(L);
+	boolean found = false;
+	int pos = 1;
 	while (!found && P != NilLBangunan) {
-		if (I(P) == i && J(P) == j) {
+		if (I(P) == i) {
 			found = true;
 		}
 		else {
 			P = Next(P);
+			pos++;
 		}
 	}
-	return P;
-} */
+	return pos;
+} 
 
 /****************** PRIMITIF BERDASARKAN NilLBangunanAI ******************/
 /*** PENAMBAHAN ELEMEN ***/

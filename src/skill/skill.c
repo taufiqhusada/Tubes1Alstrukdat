@@ -181,7 +181,7 @@ void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
 
 // BONUS
 
-void Shield(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 5
+void Shield(Queue *Q, int *shieldDur) { // Skill ID = 5
 /* I.S. Pemain mendapatkan skill jika setelah sebuah lawan menyerang, bangunan pemain
 berkurang 1 menjadi sisa 2 */
 /* F.S. Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama
@@ -191,36 +191,7 @@ namun menjadi nilai maksimum */
 	int i;
 
 	DelQueue(Q, &SklOut);
-
-	if (Owner == 1) { // Owner Pemain 1
-		for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
-			if (owner(Bgn(*T, i)) == 1) {
-				
-				// Add Shield Here
-				S(Bgn(*T, i)) = true;
-				SDur(Bgn(*T, i)) = 2;	
-
-			}
-
-
-		}
-	} // End of if
-
-	else { // Owner Pemain 2
-
-		for (i = 1; i <= 30; i++) { // Iterasi Cek Semua bangunan
-			if (owner(Bgn(*T, i)) == 2) {
-				
-				// Add Shield Here
-				S(Bgn(*T, i)) = true;
-				SDur(Bgn(*T, i)) = 2;
-
-			}
-		}
-
-	} // End of Else
-
-
+    *shieldDur = 2;
 }
 
 void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6

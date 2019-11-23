@@ -80,7 +80,7 @@ adrBgn GoTo (List L, int X);
 /* Iterasi menuju elemen list ke-X */
 /* Prekondisi: 1 <= X <= NbBangunan */
 
-// adrBgn SearchList (List L, infotype X);
+int SearchList (List L, int i);
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan adrBgn elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
