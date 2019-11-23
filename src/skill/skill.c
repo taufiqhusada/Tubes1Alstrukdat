@@ -267,6 +267,8 @@ void PrintSkillList(Queue Q) {
 
             skillID = (Q).T[j];
 
+            printf("Skill available : ");
+
             if (i == queueLen) {
                 printf("%s\n", skillList[skillID]);
             }
