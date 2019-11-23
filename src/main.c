@@ -193,18 +193,24 @@ int main() {
                         scanf("%d", &jumPasukan);
                     }
 
+
+
+                    //SETELAH ATTACK
+
+                    // dapat skill attack up
+                    if (jumlahtower(player2.listbangunan)==3){
+                        addSkill(&skill1, 6);
+                    }
+
                     // mendapat skill extra turn
-                    // jika yang direbut adalah fort
-                    /* 
-                    if (type(*B) == 'F') {
-                        AddQueue(&player2.qSkillPlayer, "ET");
+                    if (/*attack berhasil*/ && /*(type(Bgn(T(L),I(L)))=="F")*/) {
+                        addSkill(&skill2, 2);
                     }
 
                     // mendapat skill barrage
                     if (NbBangunan(listBangunan(player1) == 10) {
-                        AddQueue(player2.qSkillPlayer, "B");
+                        addSkill(&skill2, 4);
                     }
-                    */
                 }
             }
             else if (CompareKata(CKataSTDIN,"LEVELUP")){

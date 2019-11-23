@@ -134,6 +134,25 @@ adrBgn GoTo (List L, int X) {
     }
 }
 
+
+//hitung jumlah tower
+int jumlahtower(list L){
+	adrBgn P;
+	int sum;
+	/* ALGORITMA */
+	P = First(L);
+	sum = 0;
+	while (P != NilLBangunan) {
+		if (type(Bgn(T(L),I(L)))=="T"){
+			sum += 1;
+		}
+		P = Next(P);
+	}
+	return sum;
+}
+
+
+
 // adrBgn SearchList (List L, int i, int j) {
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan adrBgn elemen tersebut. */
