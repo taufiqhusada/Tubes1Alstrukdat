@@ -27,7 +27,7 @@ void addSkill(Queue *Q, int skillID) {
 void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
-    SKILL SklOut;
+    int SklOut;
     int i;
 
     Del(Q, &SklOut);
@@ -65,7 +65,7 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill ID = 2
 /* I.S. Turn berakhir dengan Pemain X telah menggunakan Skill ExtraTurn */
 /* F.S. Turn Selanjutnya dilanjutkan oleh Pemain X */
-    SKILL SklOut;
+    int SklOut;
 
     Del(Q,SklOut);
     *IsExtraTurn = true;
@@ -75,7 +75,7 @@ void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill ID = 2
 void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
 /* I.S. Semua bangunan milik pemain sudah menjadi level 4 */
 /* F.S. Semua bangunan mendapatkan tambahan 5 pasukan */
-    SKILL SklOut;
+    int SklOut;
     int i, newArmy;
 
     Del(Q, SklOut);
@@ -133,7 +133,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
 void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
 /* I.S. Bangunan Pemain baru saja menjadi 10 bangunan */
 /* F.S. Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 */
-    SKILL SklOut;
+    int SklOut;
     int i, newArmy;
     int Lawan;
 
@@ -190,7 +190,7 @@ berkurang 1 menjadi sisa 2 */
 /* F.S. Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama
 2 turn LAWAN. Jika skill digunakan 2 kali berturut-turut, durasi tidak akan bertambah,
 namun menjadi nilai maksimum */
-	SKILL SklOut;
+	int SklOut;
 	int i;
 
 	Del(Q, SklOut);
@@ -231,7 +231,7 @@ void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6
 jumlah towernya menjadi 3 */
 /* F.S. Jika Pemain menyerang lawan, Pertahanan lawan termasuk shield tidak 
 akan mempengaruhi penyerangan */
-    SKILL SklOut;
+    int SklOut;
 
     Del(Q,SklOut);
     *IsAttackUp = true;
@@ -243,7 +243,7 @@ void CriticalHit(Queue *Q, boolean *IsCriticalHit) { // Skill ID = 7
 /* F.S. Untuk 1 serangan Pemain setelah skill ini diaktifkan, Jumlah pasukan pada
 bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
 Skill ini menon-aktifkan pertahanan dan shield lawan*/
-    SKILL SklOut;
+    int SklOut;
 
     Del(Q,SklOut);
     *IsCriticalHit = true;

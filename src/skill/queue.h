@@ -13,11 +13,8 @@
 /* Konstanta untuk mendefinisikan addressQueue tak terdefinisi */
 #define MaxCodeLen 5
 /* Definisi elemen dan addressQueue */
-typedef struct  {
-    int skillID;
-} SKILL;
 
-typedef SKILL infotypeQueue;
+typedef int infotypeQueue; // int skillID 
 typedef int addressQueue;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, HeadQueue dan TailQueue eksplisit, ukuran disimpan */
