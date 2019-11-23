@@ -51,20 +51,22 @@ int main() {
     int sklOut;
 
     /* ALGORITMA */
-        printf(" .d8b.  db    db  .d8b.  d888888b  .d8b.  d8888b.   db   d8b   db  .d88b.  d8888b. db      d8888b.   db   d8b   db  .d8b.  d8888b.");
-        printf("d8' `8b 88    88 d8' `8b `~~88~~' d8' `8b 88  `8D   88   I8I   88 .8P  Y8. 88  `8D 88      88  `8D   88   I8I   88 d8' `8b 88  `8D");
-        printf("88ooo88 Y8    8P 88ooo88    88    88ooo88 88oobY'   88   I8I   88 88    88 88oobY' 88      88   88   88   I8I   88 88ooo88 88oobY'");
-        printf("88~~~88 `8b  d8' 88~~~88    88    88~~~88 88`8b     Y8   I8I   88 88    88 88`8b   88      88   88   Y8   I8I   88 88~~~88 88`8b  ");
-        printf("88   88  `8bd8'  88   88    88    88   88 88 `88.   `8b d8'8b d8' `8b  d8' 88 `88. 88booo. 88  .8D   `8b d8'8b d8' 88   88 88 `88.");
-        printf("YP   YP    YP    YP   YP    YP    YP   YP 88   YD    `8b8' `8d8'   `Y88P'  88   YD Y88888P Y8888D'    `8b8' `8d8'  YP   YP 88   YD");
+        printf(" .d8b.  db    db  .d8b.  d888888b  .d8b.  d8888b.   db   d8b   db  .d88b.  d8888b. db      d8888b.   db   d8b   db  .d8b.  d8888b.\n");
+        printf("d8' `8b 88    88 d8' `8b `~~88~~' d8' `8b 88  `8D   88   I8I   88 .8P  Y8. 88  `8D 88      88  `8D   88   I8I   88 d8' `8b 88  `8D\n");
+        printf("88ooo88 Y8    8P 88ooo88    88    88ooo88 88oobY'   88   I8I   88 88    88 88oobY' 88      88   88   88   I8I   88 88ooo88 88oobY'\n");
+        printf("88~~~88 `8b  d8' 88~~~88    88    88~~~88 88`8b     Y8   I8I   88 88    88 88`8b   88      88   88   Y8   I8I   88 88~~~88 88`8b  \n");
+        printf("88   88  `8bd8'  88   88    88    88   88 88 `88.   `8b d8'8b d8' `8b  d8' 88 `88. 88booo. 88  .8D   `8b d8'8b d8' 88   88 88 `88.\n");
+        printf("YP   YP    YP    YP   YP    YP    YP   YP 88   YD    `8b8' `8d8'   `Y88P'  88   YD Y88888P Y8888D'    `8b8' `8d8'  YP   YP 88   YD\n");
         printf("\n");
         printf("\n");
-        printf("Kelompok 08 - Kelas 01");
-        printf("Albert Sahala Theodore / 13516022");
-        printf("Anindya Prameswari Ekaputri / 13518034");
-        printf("Taufiq Husada Daryanto / 13518058");
-        printf("David Gozaly / 13518118");
-        printf("Mohammad Rafi Adyatma / 13518121");
+        printf("Kelompok 08 - Kelas 01\n");
+        printf("Albert Sahala Theodore / 13516022\n");
+        printf("Anindya Prameswari Ekaputri / 13518034\n");
+        printf("Taufiq Husada Daryanto / 13518058\n");
+        printf("David Gozaly / 13518118\n");
+        printf("Mohammad Rafi Adyatma / 13518121\n");
+        printf("\n");
+        printf("\n");
         // membaca tinggi, lebar, dan jumlah bangunan
         printf("1");
         STARTTOKEN();
