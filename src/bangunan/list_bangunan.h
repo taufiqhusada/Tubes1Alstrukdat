@@ -34,6 +34,8 @@ typedef struct {
 
 /* MUNGKIN DIPAKAI DALAM PERMAINAN */
 /********************************************************/
+int jumlahtower(List L, TBangunan T);
+
 void AddPasukanAll (List L, TBangunan TB);
 // level up all bangunan (saat awal turn)
 

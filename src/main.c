@@ -197,23 +197,23 @@ int main() {
                     //SETELAH ATTACK
 
                     // dapat skill attack up
-                    if (jumlahtower(player2.listbangunan)==3){
+                    if (jumlahtower(player2.listBangunan, TB)==3){
                         addSkill(&skill1, 6);
                     }
 
                     // mendapat skill extra turn
-                    if (/*attack berhasil*/ && /*(type(Bgn(T(L),I(L)))=="F")*/) {
-                        addSkill(&skill2, 2);
-                    }
+                    // if (/*attack berhasil && (type(Bgn(T(L),I(L)))=="F")*/) {
+                    //     addSkill(&skill2, 2);
+                    // }
 
                     // mendapat skill barrage
-                    if (NbBangunan(listBangunan(player1) == 10) {
+                    if (NbBangunan(player1.listBangunan) == 10) {
                         addSkill(&skill2, 4);
                     }
 
                     // Cek Menang
-                    if (NbBangunan(player2.listbangunan)==0){
-                        printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1";
+                    if (NbBangunan(player2.listBangunan)==0){
+                        printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1");
                         printf("SELAMAT PLAYER 1 MENANG");
                         isRunProgram = false;
 

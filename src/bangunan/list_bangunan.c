@@ -136,14 +136,14 @@ adrBgn GoTo (List L, int X) {
 
 
 //hitung jumlah tower
-int jumlahtower(list L){
+int jumlahtower(List L, TBangunan T){
 	adrBgn P;
 	int sum;
 	/* ALGORITMA */
 	P = First(L);
 	sum = 0;
 	while (P != NilLBangunan) {
-		if (type(Bgn(T(L),I(L)))=="T"){
+		if (type(Bgn(T, I(P)))=='T'){
 			sum += 1;
 		}
 		P = Next(P);
