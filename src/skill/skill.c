@@ -65,6 +65,9 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill ID = 2
 /* I.S. Turn berakhir dengan Pemain X telah menggunakan Skill ExtraTurn */
 /* F.S. Turn Selanjutnya dilanjutkan oleh Pemain X */
+    SKILL SklOut;
+
+    Del(Q,SklOut);
     *IsExtraTurn = true;
 
 }
@@ -228,7 +231,11 @@ void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6
 jumlah towernya menjadi 3 */
 /* F.S. Jika Pemain menyerang lawan, Pertahanan lawan termasuk shield tidak 
 akan mempengaruhi penyerangan */
+    SKILL SklOut;
+
+    Del(Q,SklOut);
     *IsAttackUp = true;
+    
 }
 
 void CriticalHit(Queue *Q, boolean *IsCriticalHit) { // Skill ID = 7
@@ -236,6 +243,9 @@ void CriticalHit(Queue *Q, boolean *IsCriticalHit) { // Skill ID = 7
 /* F.S. Untuk 1 serangan Pemain setelah skill ini diaktifkan, Jumlah pasukan pada
 bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
 Skill ini menon-aktifkan pertahanan dan shield lawan*/
+    SKILL SklOut;
+
+    Del(Q,SklOut);
     *IsCriticalHit = true;
 
 }
