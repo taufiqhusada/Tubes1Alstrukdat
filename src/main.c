@@ -165,7 +165,7 @@ int main() {
             if (CompareKata(CKataSTDIN,"ATTACK")){
                 printBangunan(player1,TB);
                 printBangunan(player2,TB);
-                if (playerTurn==1){
+                if (playerTurn == 1){
                     printBangunan(player1, TB);
                     int inputPenyerang;
                     printf("Pilih bangunan yang akan menyerang: ");
@@ -175,7 +175,7 @@ int main() {
                     FindAllAdj(L, attacking, &arrResult, &sizeArr);
                     int j;
                     for (j = 1; j <= sizeArr; j++) {
-                        if (Bgn(TB, arrResult[j]).owner==2) {
+                        if (Bgn(TB, arrResult[j]).owner!=1) {
                             printf("%d. ", Bgn(TB, arrResult[j]).idxArray);
                             TulisDataBangunan(Bgn(TB, arrResult[j]));
                             printf("\n");
@@ -193,6 +193,7 @@ int main() {
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
                     }
+
 
                     //SETELAH ATTACK
 
