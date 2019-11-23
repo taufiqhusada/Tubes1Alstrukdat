@@ -12,14 +12,14 @@
 /* MUNGKIN DIPAKAI DALAM PERMAINAN */
 /********************************************************/
 
-void AddPasukanAll (List L, TBangunan TB) {
+void AddPasukanAll (List L, TBangunan *TB) {
     /* KAMUS */
     adrBgn P;
     /* ALGORITMA */
     P = First(L);
 	boolean status;
     while (P != NilLBangunan) {
-        AddPasukan(&Bgn(TB, I(P)));
+        AddPasukan(&Bgn(*TB, I(P)));
         P = Next(P);
     }
 }

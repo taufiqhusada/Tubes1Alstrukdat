@@ -95,8 +95,8 @@ void BacaMATRIKS (MATRIKS * M, int NB, int NK){
 void TulisMATRIKS (MATRIKS M, TBangunan TB){
 	if (M.NBrsEff==0 || M.NKolEff==0) return;
 	int i,j;
-	for (i =1; i<=GetLastIdxKol(M)+1; ++i){
-		printf("* ");
+	for (i =1; i<=GetLastIdxKol(M)+2; ++i){
+		printf("*");
 	}
 	printf("\n");
 	for (i=1; i<=GetLastIdxBrs(M); ++i){
@@ -111,12 +111,12 @@ void TulisMATRIKS (MATRIKS M, TBangunan TB){
 			else{
 				printf("%c",(Bgn(TB,Elmt(M,i,j)).type));
 			}
-			if (j<GetLastIdxKol(M)) printf(" ");	
+			// if (j<GetLastIdxKol(M)) printf(" ");	
 		}
 		printf("*\n");
 	}
-	for (i =1; i<=GetLastIdxKol(M)+1; ++i){
-		printf("* ");
+	for (i =1; i<=GetLastIdxKol(M)+2; ++i){
+		printf("*");
 	}
 	printf("\n");
 }

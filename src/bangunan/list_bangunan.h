@@ -36,7 +36,7 @@ typedef struct {
 /********************************************************/
 int jumlahtower(List L, TBangunan T);
 
-void AddPasukanAll (List L, TBangunan TB);
+void AddPasukanAll (List L, TBangunan *TB);
 // level up all bangunan (saat awal turn)
 
 // SELF BUILDINGS

@@ -149,11 +149,11 @@ int main() {
         while(isRunProgram){
             printf("\n");
             if (playerTurn==1){
-                AddPasukanAll(player1.listBangunan,TB);
+                // AddPasukanAll(player1.listBangunan,&TB);
                 printBangunan(player1,TB);
             }
             else{
-                AddPasukanAll(player2.listBangunan,TB);
+                // AddPasukanAll(player2.listBangunan,&TB);
                 printBangunan(player2,TB);
             }
             
@@ -275,31 +275,31 @@ int main() {
                         sklOut = InfoHeadQueue(skill1);
 
                         switch (sklOut) {
-                            1: 
+                            case 1: 
                                 InstantUpgrade(&skill1, playerTurn, &TB);
                                 break;
                             
-                            2:
+                            case 2:
                                 ExtraTurn(&skill1,&IsExtraTurnP1);
                                 break;
                             
-                            3:
+                            case 3:
                                 InstantReinforcement(&skill1, playerTurn, &TB);
                                 break;
 
-                            4:
+                            case 4:
                                 Barrage(&skill1, playerTurn, &TB);
                                 break;
 
-                            5:
+                            case 5:
                                 Shield(&skill1, playerTurn, &TB);
                                 break;
                             
-                            6:
+                            case 6:
                                 AttackUp(&skill1, &IsAttackUpP1);
                                 break;
 
-                            7:
+                            case 7:
                                 CriticalHit(&skill1, &IsCriticalHitP1);
                                 break;
 
@@ -315,31 +315,31 @@ int main() {
                         sklOut = InfoHeadQueue(skill2);
 
                         switch (sklOut) {
-                            1: 
+                            case 1: 
                                 InstantUpgrade(&skill2, playerTurn, &TB);
                                 break;
                             
-                            2:
+                            case 2:
                                 ExtraTurn(&skill2,&IsExtraTurnP1);
                                 break;
                             
-                            3:
+                            case 3:
                                 InstantReinforcement(&skill2, playerTurn, &TB);
                                 break;
 
-                            4:
+                            case 4:
                                 Barrage(&skill2, playerTurn, &TB);
                                 break;
 
-                            5:
+                            case 5:
                                 Shield(&skill2, playerTurn, &TB);
                                 break;
                             
-                            6:
+                            case 6:
                                 AttackUp(&skill2, &IsAttackUpP2);
                                 break;
 
-                            7:
+                            case 7:
                                 CriticalHit(&skill2, &IsCriticalHitP2);
                                 break;
 
@@ -410,13 +410,18 @@ int main() {
                 // mendapatkan skill instant reinforcement
                 // jika semua bangunannya berlevel 4
 
+                // KOSONGIN STACK UNDO
+                CreateEmptyStack(&undoStack);
+
                 // cek player
                 adrBgn P;
                 if (playerTurn == 1) {
+                    AddPasukanAll(player1.listBangunan,&TB);
                     List LB = listBangunan(player1);
                     P = (LB).First;
                 }
                 else {
+                    AddPasukanAll(player2.listBangunan,&TB);
                     List LB = listBangunan(player2);
                     P = (LB).First;
                 }
