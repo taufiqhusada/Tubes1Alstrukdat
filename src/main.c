@@ -48,9 +48,11 @@ int main() {
     char type;
     int absis;
     int ordinat;
+    int sklOut;
 
     /* ALGORITMA */
         // membaca tinggi, lebar, dan jumlah bangunan
+        printf("1");
         STARTTOKEN();
         mapheight = CToken.val;
         ADVTOKEN();
@@ -169,7 +171,7 @@ int main() {
             if (CompareKata(CKataSTDIN,"ATTACK")){
                 printBangunan(player1,TB);
                 printBangunan(player2,TB);
-                if (playerTurn==1){
+                if (playerTurn == 1){
                     printBangunan(player1, TB);
                     int inputPenyerang;
                     printf("Pilih bangunan yang akan menyerang: ");
@@ -179,7 +181,7 @@ int main() {
                     FindAllAdj(L, attacking, &arrResult, &sizeArr);
                     int j;
                     for (j = 1; j <= sizeArr; j++) {
-                        if (Bgn(TB, arrResult[j]).owner==2) {
+                        if (Bgn(TB, arrResult[j]).owner!=1) {
                             printf("%d. ", Bgn(TB, arrResult[j]).idxArray);
                             TulisDataBangunan(Bgn(TB, arrResult[j]));
                             printf("\n");
@@ -193,10 +195,18 @@ int main() {
                     scanf("%d", &jumPasukan);
                     // validasi jumlah pasukan yang menyerang
                     while (jumPasukan > Bgn(TB,attacking).nbPasukan) {
-                        printf("Jumlah pasukan bangunan tidak sebanyak itu. \n");
+                        printf("Jumlah pasukan bangunan tidak sebanyak itu.\n");
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
+
                     }
+
+                    if (jumPasukan >= Bgn(TB,attacking).nbPasukan){
+                        
+                    } else {
+
+                    }
+
 
                     //SETELAH ATTACK
 
@@ -213,6 +223,11 @@ int main() {
                     // mendapat skill barrage
                     if (NbBangunan(player1.listBangunan) == 10) {
                         addSkill(&skill2, 4);
+                    }
+
+                    // mendapat skill shield
+                    if (NbBangunan(player2.listBangunan) == 2) {
+                        addSkill(&skill2, 5);
                     }
 
                     // Cek Menang
@@ -259,18 +274,88 @@ int main() {
             }
             else if (CompareKata(CKataSTDIN,"SKILL")){
                 if (playerTurn==1) {
-                    printSkill(player1);
-                    if (!IsEmptyQueue(player1.qSkillPlayer)){
+                    PrintSkillList(skill1);
+                    if (!IsEmptyQueue(skill1)){
+                        // Calling Skill
+                        sklOut = InfoHeadQueue(skill1);
+
+                        switch (sklOut) {
+                            case 1: 
+                                InstantUpgrade(&skill1, playerTurn, &TB);
+                                break;
+                            
+                            case 2:
+                                ExtraTurn(&skill1,&IsExtraTurnP1);
+                                break;
+                            
+                            case 3:
+                                InstantReinforcement(&skill1, playerTurn, &TB);
+                                break;
+
+                            case 4:
+                                Barrage(&skill1, playerTurn, &TB);
+                                break;
+
+                            case 5:
+                                Shield(&skill1, playerTurn, &TB);
+                                break;
+                            
+                            case 6:
+                                AttackUp(&skill1, &IsAttackUpP1);
+                                break;
+
+                            case 7:
+                                CriticalHit(&skill1, &IsCriticalHitP1);
+                                break;
+
+
+                        } // End of Switch
 
                     }
                 }
                 else {
-                    printSkill(player2);
-                    if (!IsEmptyQueue(player2.qSkillPlayer)){
+                    PrintSkillList(skill2);
+                    if (!IsEmptyQueue(skill2)){
+                        // Calling Skill
+                        sklOut = InfoHeadQueue(skill2);
+
+                        switch (sklOut) {
+                            case 1: 
+                                InstantUpgrade(&skill2, playerTurn, &TB);
+                                break;
+                            
+                            case 2:
+                                ExtraTurn(&skill2,&IsExtraTurnP1);
+                                break;
+                            
+                            case 3:
+                                InstantReinforcement(&skill2, playerTurn, &TB);
+                                break;
+
+                            case 4:
+                                Barrage(&skill2, playerTurn, &TB);
+                                break;
+
+                            case 5:
+                                Shield(&skill2, playerTurn, &TB);
+                                break;
+                            
+                            case 6:
+                                AttackUp(&skill2, &IsAttackUpP2);
+                                break;
+
+                            case 7:
+                                CriticalHit(&skill2, &IsCriticalHitP2);
+                                break;
+
+
+                        } // End of Switch
+
 
                     }
                 }
-            
+		    
+		    
             }
             else if (CompareKata(CKataSTDIN,"UNDO")){
                 if (IsEmptyStack(undoStack)){
@@ -354,10 +439,10 @@ int main() {
 
                 // menambah skill jika semua berlevel 4
                 if (allmax && playerTurn == 1) {
-                    //AddQueue(player1.qSkillPlayer, "IR");
+                    addSkill(&skill1, 3);
                 }
                 else if (allmax && playerTurn == 2) {
-                    //AddQueue(player2.qSkillPlayer, "IR");
+                    addSkill(&skill2, 3);
                 }
 
                 // mengganti turn

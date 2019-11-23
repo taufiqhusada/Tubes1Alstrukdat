@@ -21,6 +21,7 @@ typedef struct {
     int A;          // nilai penambahan pasukan
     int M;          // nilai maks penambahan
     boolean P;      // pertahanan
+    int SDur;	    // Shield Duration
     int U;          // pasukan awal untuk menjadikan bangunan ini milik pemain
     int absis;      // letak absis
     int ordinat;    // letak ordinat
