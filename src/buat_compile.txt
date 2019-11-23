@@ -1,0 +1,2 @@
+copas aja
+gcc main.c konfig/mesinkar.c konfig/mesintoken.c konfig/petaMatriks.c bangunan/bangunan.c bangunan/list_bangunan.c stackUndo/stackToken.c graph/multilist.c skill/queue.c permainan/permainan.c pcolor/pcolor.c mesinkataSTDIN/mesinkarSTDIN.c mesinkataSTDIN/mesinkataSTDIN.c skill/skill.c

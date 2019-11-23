@@ -191,17 +191,7 @@ namun menjadi nilai maksimum */
 	int i;
 
 	DelQueue(Q, &SklOut);
-
-	if (Owner == 1) { // Owner Pemain 1
-		*shieldDur = 2;
-
-	} // End of if
-
-	else { // Owner Pemain 2
-        	*shieldDur = 2;
-
-	} // End of Else
-
+    *shieldDur = 2;
 }
 
 void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6
