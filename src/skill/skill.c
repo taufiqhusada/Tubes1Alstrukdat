@@ -80,8 +80,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
     if (Owner == 1) { // Owner Pemain 1
         for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
             if (owner(Bgn(*T, i)) == 1) {
-               
-                if (level(Bgn(*T, i)) == 4) {
+		    
                     // +5 Army Here
                     newArmy = nbPas(Bgn(*T,i)) + 5;
 
@@ -91,11 +90,6 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
                     else {
                         nbPas(Bgn(*T,i)) = newArmy;
                     }
-
-                } 
-
-            }
-
 
         }
     } // End of if
@@ -105,7 +99,6 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
         for (i = 1; i <= 30; i++) { // Iterasi Cek Semua bangunan
             if (owner(Bgn(*T, i)) == 2) {
                
-                if (level(Bgn(*T, i)) != 4) {
                     // +5 Army Here
                     newArmy = nbPas(Bgn(*T,i)) + 5;
 
@@ -115,8 +108,6 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
                     else {
                         nbPas(Bgn(*T,i)) = newArmy;
                     }
-
-                } 
 
             }
         }
@@ -143,7 +134,7 @@ void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
                // Remove 10 Army from Lawan
                 newArmy = nbPas(Bgn(*T,i)) - 10;
 
-                if (newArmy < 0) {
+                if (newArmy > 0) {
                     nbPas(Bgn(*T,i)) = newArmy;
                 }
                 else {
