@@ -194,8 +194,6 @@ int main() {
                         scanf("%d", &jumPasukan);
                     }
 
-
-
                     //SETELAH ATTACK
 
                     // dapat skill attack up
@@ -218,6 +216,8 @@ int main() {
                         printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1";
                         printf("SELAMAT PLAYER 1 MENANG");
                         isRunProgram = false;
+
+
                     }
                 }
             }
