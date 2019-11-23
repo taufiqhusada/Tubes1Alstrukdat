@@ -190,9 +190,16 @@ int main() {
                     scanf("%d", &jumPasukan);
                     // validasi jumlah pasukan yang menyerang
                     while (jumPasukan > Bgn(TB,attacking).nbPasukan) {
-                        printf("Jumlah pasukan bangunan tidak sebanyak itu. \n");
+                        printf("Jumlah pasukan bangunan tidak sebanyak itu.\n");
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
+
+                    }
+
+                    if (jumPasukan >= Bgn(TB,attacking).nbPasukan){
+                        
+                    } else {
+
                     }
 
 
@@ -262,7 +269,7 @@ int main() {
             }
             else if (CompareKata(CKataSTDIN,"SKILL")){
                 if (playerTurn==1) {
-                    printSkill(skill1);
+                    PrintSkillList(skill1);
                     if (!IsEmptyQueue(skill1)){
                         // Calling Skill
                         sklOut = InfoHeadQueue(skill1);
@@ -302,7 +309,7 @@ int main() {
                     }
                 }
                 else {
-                    printSkill(skill2);
+                    PrintSkillList(skill2);
                     if (!IsEmptyQueue(skill2)){
                         // Calling Skill
                         sklOut = InfoHeadQueue(skill2);
