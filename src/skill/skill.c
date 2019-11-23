@@ -197,7 +197,6 @@ namun menjadi nilai maksimum */
 			if (owner(Bgn(*T, i)) == 1) {
 				
 				// Add Shield Here
-				S(Bgn(*T, i)) = true;
 				SDur(Bgn(*T, i)) = 2;	
 
 			}
@@ -212,7 +211,6 @@ namun menjadi nilai maksimum */
 			if (owner(Bgn(*T, i)) == 2) {
 				
 				// Add Shield Here
-				S(Bgn(*T, i)) = true;
 				SDur(Bgn(*T, i)) = 2;
 
 			}
