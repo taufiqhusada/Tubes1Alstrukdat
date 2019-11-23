@@ -38,7 +38,7 @@ void CreateEmptyList (List *L) {
 void PrintInfo (List L, TBangunan TB) {
 /* I.S. List mungkin kosong */
 /* F.S. Jika list tidak kosong, isi list dicetak ke bawah */
-/* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level>
+/* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level> */
 /* Contoh : 1. Castle (1,15) 20 lv. 3 */
 /* List tidak akan kosong karena jika list kosong, permainan berhenti */
     /* KAMUS */
@@ -139,8 +139,8 @@ adrBgn GoTo (List L, int X) {
 /* Jika ada, mengirimkan adrBgn elemen tersebut. */
 /* Jika tidak ada, mengirimkan NilLBangunan */
 	/* KAMUS */
-	/* adrBgn P;
-	boolean found;
+	/* adrBgn P; */
+	/* boolean found; */
 	/* ALGORITMA */
 	/* P = First(L);
 	found = false;

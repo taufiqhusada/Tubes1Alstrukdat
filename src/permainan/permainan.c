@@ -14,7 +14,7 @@ void printBangunan(Player P, TBangunan TB){
 }
 
 void printSkill(Player P){
-    printf("%s", InfoHeadQueue(P.qSkillPlayer));
+    printf("%d", InfoHeadQueue(P.qSkillPlayer));
 }
 /* 
 void printAllState(Player P){

@@ -1,7 +1,7 @@
 /* Tgl: 26 Oktober 2019 */
 /* Program untuk membaca konfigurasi permainan */
 
-/* * * * PROSES * * * * /
+/* * * * PROSES * * * * */
 /* input: konfigurasi.txt */
 
 /* adv  type     desc                            */
@@ -30,6 +30,7 @@
 #include "graph/multilist.h"
 #include "skill/queue.h"
 #include "permainan/permainan.h"
+#include "skill/skill.h"
 
 
 /* VARIABEL GLOBAL */
