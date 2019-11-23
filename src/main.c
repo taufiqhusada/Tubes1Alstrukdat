@@ -206,7 +206,7 @@ int main() {
                             Bgn(TB,diserang).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);                        
                             ChangeOwner(TB, player2.listBangunan, player1.listBangunan, inputDiserang);
                         } else {
-                            Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4));
+                            Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4);
                         }
                     } else {
                         if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
