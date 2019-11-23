@@ -13,9 +13,6 @@
 
 
 
-#define HeadSklID(Q) (Q).T[(Q).HEAD].skillID
-#define SkillID(X) (X).skillID
-
 // List Skill akan bertipe Queue
 
 void addSkill (Queue *Q, infotypeQueue X);

@@ -9,15 +9,12 @@
 void addSkill(Queue *Q, int skillID) {
 	/* I.S. X adalah skill dan Q terdefisini */
 	/* F.S. X dimasukkan kedalam Queue dan TailQueue(Q) = X */
-	SKILL X;
-	int queueLen;
-
-	SkillID(X) = skillID;
+    int queueLen;
 
 	queueLen = NBElmtQueue(*Q);
 
 	if (queueLen <= 10) {
-		AddQueue(Q, X);
+		AddQueue(Q, skillID);
 	}
 	else {
 		// Queue Skill Penuh
@@ -30,7 +27,7 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
     int SklOut;
     int i;
 
-    Del(Q, &SklOut);
+    DelQueue(Q, &SklOut);
     if (Owner == 1) { // Owner Pemain 1
         for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
             if (owner(Bgn(*T, i)) == 1) {
@@ -67,7 +64,7 @@ void ExtraTurn(Queue *Q, boolean *IsExtraTurn) { // Skill ID = 2
 /* F.S. Turn Selanjutnya dilanjutkan oleh Pemain X */
     int SklOut;
 
-    Del(Q,SklOut);
+    DelQueue(Q, &SklOut);
     *IsExtraTurn = true;
 
 }
@@ -78,7 +75,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
     int SklOut;
     int i, newArmy;
 
-    Del(Q, SklOut);
+    DelQueue(Q, &SklOut);
 
     if (Owner == 1) { // Owner Pemain 1
         for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
@@ -137,7 +134,7 @@ void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
     int i, newArmy;
     int Lawan;
 
-    Del(Q, SklOut);
+    DelQueue(Q, &SklOut);
 
     if (Owner == 1) { // Owner Pemain 1
         Lawan = 2;
@@ -193,7 +190,7 @@ namun menjadi nilai maksimum */
 	int SklOut;
 	int i;
 
-	Del(Q, SklOut);
+	DelQueue(Q, &SklOut);
 
 	if (Owner == 1) { // Owner Pemain 1
 		for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
@@ -233,7 +230,7 @@ jumlah towernya menjadi 3 */
 akan mempengaruhi penyerangan */
     int SklOut;
 
-    Del(Q,SklOut);
+    DelQueue(Q,&SklOut);
     *IsAttackUp = true;
     
 }
@@ -245,7 +242,7 @@ bangunan yang melakukan serangan menjadi 2 kali lipat pasukan.
 Skill ini menon-aktifkan pertahanan dan shield lawan*/
     int SklOut;
 
-    Del(Q,SklOut);
+    DelQueue(Q,&SklOut);
     *IsCriticalHit = true;
 
 }
