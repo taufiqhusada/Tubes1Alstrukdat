@@ -218,23 +218,53 @@ int main() {
                     }
                     if (Bgn(TB, diserang).owner!=2){
                         if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            BANGUNAN before1;
+                            BANGUNAN before2;
+                            copyBangunan(&Bgn(TB,diserang), &before1);
+                            copyBangunan(&Bgn(TB,attacking), &before2);
+                            int idxList = NbBangunan(player1.listBangunan);
+                            
+                            PushStack(&undoStack, 'A', before2);
+                            PushStackConquered(&undoStack, 'C', before1, 0, idxList+1);
+                            
                             Bgn(TB,attacking).nbPasukan = jumPasukan - Bgn(TB,diserang).nbPasukan; 
                             Bgn(TB,diserang).owner = 1;                     
                             InsVLast(&player1.listBangunan,TB, diserang);
                         } else {
+                            BANGUNAN before1;
+                            BANGUNAN before2;
+                            copyBangunan(&Bgn(TB,diserang), &before1);
+                            copyBangunan(&Bgn(TB,attacking), &before2);
                             Bgn(TB,diserang).nbPasukan -= jumPasukan;
                             Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            PushStack(&undoStack, 'A', before1);
+                            PushStack(&undoStack, 'A', before2);
                         }
                     }
                     else{
                         if (P(Bgn(TB, diserang)) || (shield2 > 0)){
                             if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                BANGUNAN before1;
+                                BANGUNAN before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
+                                int idxList = NbBangunan(player1.listBangunan);
+                                
+                                PushStack(&undoStack, 'A', before2);
+                                PushStackConquered(&undoStack, 'C', before1, 2, idxList+1);
+
                                 Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);  
                                 int posInList = SearchList(player2.listBangunan,inputDiserang);                      
                                 ChangeOwner(TB, player2.listBangunan, player1.listBangunan, posInList);
                             } else {
+                                BANGUNAN before1;
+                                BANGUNAN before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
                                 Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4);
                                 Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                                PushStack(&undoStack, 'A', before1);
+                                PushStack(&undoStack, 'A', before2);
                             }
                         } else {
                             if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
@@ -243,8 +273,14 @@ int main() {
                                 ChangeOwner(TB, player2.listBangunan, player1.listBangunan, posInList);
 
                             } else {
+                                BANGUNAN before1;
+                                BANGUNAN before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
                                 Bgn(TB,diserang).nbPasukan -= jumPasukan;
                                 Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                                PushStack(&undoStack, 'A', before1);
+                                PushStack(&undoStack, 'A', before2);
                             }
                         }
                     }
@@ -280,23 +316,51 @@ int main() {
                     }
                     if (Bgn(TB, diserang).owner!=1){
                         if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            BANGUNAN before1,before2;
+                            copyBangunan(&Bgn(TB,diserang), &before1);
+                            copyBangunan(&Bgn(TB,attacking), &before2);
+                            int idxList = NbBangunan(player2.listBangunan);
+                            
+                            PushStack(&undoStack, 'A', before2);
+                            PushStackConquered(&undoStack, 'C', before1, 0, idxList+1);
+
                             Bgn(TB,attacking).nbPasukan = jumPasukan - Bgn(TB,diserang).nbPasukan; 
                             Bgn(TB,diserang).owner = 2;                     
                             InsVLast(&player2.listBangunan,TB, diserang);
                         } else {
+                            BANGUNAN before1;
+                            BANGUNAN before2;
+                            copyBangunan(&Bgn(TB,diserang), &before1);
+                            copyBangunan(&Bgn(TB,attacking), &before2);
                             Bgn(TB,diserang).nbPasukan -= jumPasukan;
                             Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                            PushStack(&undoStack, 'A', before1);
+                            PushStack(&undoStack, 'A', before2);
                         }
                     }
                     else{
                         if (P(Bgn(TB, diserang)) || (shield2 > 0)){
                             if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                                BANGUNAN before1,before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
+                                int idxList = NbBangunan(player2.listBangunan);
+                                
+                                PushStack(&undoStack, 'A', before2);
+                                PushStackConquered(&undoStack, 'C', before1, 1, idxList+1);
+
                                 Bgn(TB,attacking).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);  
                                 int posInList = SearchList(player1.listBangunan,inputDiserang);                      
                                 ChangeOwner(TB, player1.listBangunan, player2.listBangunan, posInList);
                             } else {
+                                BANGUNAN before1;
+                                BANGUNAN before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
                                 Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (3 * jumPasukan / 4);
                                 Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                                PushStack(&undoStack, 'A', before1);
+                                PushStack(&undoStack, 'A', before2);
                             }
                         } else {
                             if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
@@ -305,8 +369,14 @@ int main() {
                                 ChangeOwner(TB, player1.listBangunan, player2.listBangunan, posInList);
 
                             } else {
+                                BANGUNAN before1;
+                                BANGUNAN before2;
+                                copyBangunan(&Bgn(TB,diserang), &before1);
+                                copyBangunan(&Bgn(TB,attacking), &before2);
                                 Bgn(TB,diserang).nbPasukan -= jumPasukan;
                                 Bgn(TB,attacking).nbPasukan -= jumPasukan;
+                                PushStack(&undoStack, 'A', before1);
+                                PushStack(&undoStack, 'A', before2);
                             }
                         }
                     }
@@ -494,8 +564,20 @@ int main() {
                     if (listAsal==1){
                         ChangeOwner(TB,player2.listBangunan, player1.listBangunan,idxList);
                     }
-                    else{
+                    else if (listAsal==2){
                         ChangeOwner(TB,player1.listBangunan, player2.listBangunan,idxList);
+                    }
+                    else{
+                        if (playerTurn==1){
+                            int lastEl = NbBangunan(player1.listBangunan);
+                            //printf("%d\n",lastEl);
+                            DelP(&player1.listBangunan, lastEl);
+                            // printf("%d\n",NbBangunan(player1.listBangunan));
+                        }
+                        else{
+                            int lastEl = NbBangunan(player2.listBangunan);
+                            DelP(&player2.listBangunan, lastEl);
+                        }
                     }
                     
                     // bangunan yang sebelumnya menyerang
