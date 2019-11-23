@@ -260,18 +260,88 @@ int main() {
             }
             else if (CompareKata(CKataSTDIN,"SKILL")){
                 if (playerTurn==1) {
-                    printSkill(player1);
-                    if (!IsEmptyQueue(player1.qSkillPlayer)){
+                    printSkill(skill1);
+                    if (!IsEmptyQueue(skill1)){
+                        // Calling Skill
+                        sklOut = InfoHeadQueue(skill1);
+
+                        switch (sklOut) {
+                            1: 
+                                InstantUpgrade(&skill1, playerTurn, &TB);
+                                break;
+                            
+                            2:
+                                ExtraTurn(&skill1,&IsExtraTurnP1);
+                                break;
+                            
+                            3:
+                                InstantReinforcement(&skill1, playerTurn, &TB);
+                                break;
+
+                            4:
+                                Barrage(&skill1, playerTurn, &TB);
+                                break;
+
+                            5:
+                                Shield(&skill1, playerTurn, &TB);
+                                break;
+                            
+                            6:
+                                AttackUp(&skill1, &IsAttackUpP1);
+                                break;
+
+                            7:
+                                CriticalHit(&skill1, &IsCriticalHitP1);
+                                break;
+
+
+                        } // End of Switch
 
                     }
                 }
                 else {
-                    printSkill(player2);
-                    if (!IsEmptyQueue(player2.qSkillPlayer)){
+                    printSkill(skill2);
+                    if (!IsEmptyQueue(skill2)){
+                        // Calling Skill
+                        sklOut = InfoHeadQueue(skill2);
+
+                        switch (sklOut) {
+                            1: 
+                                InstantUpgrade(&skill2, playerTurn, &TB);
+                                break;
+                            
+                            2:
+                                ExtraTurn(&skill2,&IsExtraTurnP1);
+                                break;
+                            
+                            3:
+                                InstantReinforcement(&skill2, playerTurn, &TB);
+                                break;
+
+                            4:
+                                Barrage(&skill2, playerTurn, &TB);
+                                break;
+
+                            5:
+                                Shield(&skill2, playerTurn, &TB);
+                                break;
+                            
+                            6:
+                                AttackUp(&skill2, &IsAttackUpP2);
+                                break;
+
+                            7:
+                                CriticalHit(&skill2, &IsCriticalHitP2);
+                                break;
+
+
+                        } // End of Switch
+
 
                     }
                 }
-            
+		    
+		    
             }
             else if (CompareKata(CKataSTDIN,"UNDO")){
                 if (IsEmptyStack(undoStack)){
