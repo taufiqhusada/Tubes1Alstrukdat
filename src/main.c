@@ -211,6 +211,11 @@ int main() {
                         addSkill(&skill2, 4);
                     }
 
+                    // mendapat skill shield
+                    if (NbBangunan(player2.listBangunan) == 2) {
+                        addSkill(&skill2, 5);
+                    }
+
                     // Cek Menang
                     if (NbBangunan(player2.listBangunan)==0){
                         printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1");
@@ -350,10 +355,10 @@ int main() {
 
                 // menambah skill jika semua berlevel 4
                 if (allmax && playerTurn == 1) {
-                    //AddQueue(player1.qSkillPlayer, "IR");
+                    addSkill(&skill1, 3);
                 }
                 else if (allmax && playerTurn == 2) {
-                    //AddQueue(player2.qSkillPlayer, "IR");
+                    addSkill(&skill2, 3);
                 }
 
                 // mengganti turn
