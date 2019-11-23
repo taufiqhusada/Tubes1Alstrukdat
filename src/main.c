@@ -190,6 +190,7 @@ int main() {
                     printf("Pilih bangunan yang akan diserang: ");
                     int inputDiserang;
                     scanf("%d", &inputDiserang);
+                    int diserang = GoTo(player2.listBangunan, inputDiserang) -> i;
                     int jumPasukan;
                     printf("Jumlah pasukan yang akan menyerang: ");
                     scanf("%d", &jumPasukan);
@@ -198,15 +199,23 @@ int main() {
                         printf("Jumlah pasukan bangunan tidak sebanyak itu.\n");
                         printf("Silakan masukan kembali jumlah pasukan: ");
                         scanf("%d", &jumPasukan);
-
                     }
 
-                    if (jumPasukan >= Bgn(TB,attacking).nbPasukan){
-                        
+                    if (P(Bgn(TB, diserang))){
+                        if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            Bgn(TB,diserang).nbPasukan = jumPasukan - (Bgn(TB,diserang).nbPasukan * 4 / 3);                        
+                            ChangeOwner(TB, player2.listBangunan, player1.listBangunan, inputDiserang);
+                        } else {
+                            Bgn(TB,diserang).nbPasukan = Bgn(TB,diserang).nbPasukan - (0.75 * jumPasukan);
+                        }
                     } else {
-
+                        if (jumPasukan >= Bgn(TB,diserang).nbPasukan){
+                            Bgn(TB,diserang).nbPasukan = jumPasukan - Bgn(TB,diserang).nbPasukan;                        
+                            ChangeOwner(TB, player2.listBangunan, player1.listBangunan, inputDiserang);
+                        } else {
+                            Bgn(TB,diserang).nbPasukan -= jumPasukan;
+                        }
                     }
-
 
                     //SETELAH ATTACK
 
