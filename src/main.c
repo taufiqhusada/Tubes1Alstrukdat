@@ -48,6 +48,7 @@ int main() {
     char type;
     int absis;
     int ordinat;
+    int sklOut;
 
     /* ALGORITMA */
         // membaca tinggi, lebar, dan jumlah bangunan
