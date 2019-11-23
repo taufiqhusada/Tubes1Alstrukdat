@@ -35,7 +35,7 @@ void Barrage(Queue *Q, int Owner, TBangunan *T); // Skill ID = 4
 /* I.S. Bangunan Pemain baru saja menjadi 10 bangunan */
 /* F.S. Jumlah pasukan pada seluruh bangunan musuh akan berkurang sebanyak 10 */
 
-void Shield(Queue *Q, int Owner, TBangunan *T); // Skill ID = 5
+void Shield(Queue *Q, int *shieldDur); // Skill ID = 5
 /* I.S. Pemain mendapatkan skill jika setelah sebuah lawan menyerang, bangunan pemain
 berkurang 1 menjadi sisa 2 */
 /* F.S. Seluruh bangunan yang dimiliki oleh pemain akan memiliki pertahanan selama
