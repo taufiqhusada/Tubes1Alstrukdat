@@ -21,6 +21,26 @@ void addSkill(Queue *Q, int skillID) {
 	}
 }
 
+boolean checkAllLevel4(int Owner, TBangunan *T) {
+    /* Fungsi cek apakah semua bangunan level 4 */
+    int i;
+    boolean isAllLevel4 = true;
+
+    for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
+            if (owner(Bgn(*T, i)) == Owner) {
+               
+                if (level(Bgn(*T, i)) != 4) {
+                    isAllLevel4 = false;
+
+                } 
+
+            }
+    }
+
+    return isAllLevel4;
+
+}
+
 void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
@@ -40,6 +60,7 @@ void InstantUpgrade(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 1
 
 
         }
+
     } // End of if
 
     else { // Owner Pemain 2
@@ -80,7 +101,7 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
     if (Owner == 1) { // Owner Pemain 1
         for (i = 1; i <= 30; i++) { // Iterasi Cek semua bangunan
             if (owner(Bgn(*T, i)) == 1) {
-		    
+               
                     // +5 Army Here
                     newArmy = nbPas(Bgn(*T,i)) + 5;
 
@@ -90,6 +111,10 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
                     else {
                         nbPas(Bgn(*T,i)) = newArmy;
                     }
+
+
+            }
+
 
         }
     } // End of if
@@ -108,6 +133,8 @@ void InstantReinforcement(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 3
                     else {
                         nbPas(Bgn(*T,i)) = newArmy;
                     }
+
+                 
 
             }
         }
@@ -182,7 +209,10 @@ namun menjadi nilai maksimum */
 	int i;
 
 	DelQueue(Q, &SklOut);
-    *shieldDur = 2;
+
+	*shieldDur = 2;
+
+
 }
 
 void AttackUp(Queue *Q, boolean *IsAttackUp) { // Skill ID = 6

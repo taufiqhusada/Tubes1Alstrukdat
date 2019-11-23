@@ -19,6 +19,9 @@ void addSkill (Queue *Q, infotypeQueue X);
 /* I.S. X adalah skill dan Q terdefisini */
 /* F.S. X dimasukkan kedalam Queue dan TailQueue(Q) = X */
 
+boolean checkAllLevel4 (int Owner, TBangunan *T);
+/* Fungsi cek apakah semua bangunan level 4 */
+
 void InstantUpgrade(Queue *Q, int Owner, TBangunan *T); // Skill ID = 1
 /* I.S. Pemain memiliki bangunan */
 /* F.S. Seluruh bangunan yang dimiliki pemain akan naik 1 level  */
