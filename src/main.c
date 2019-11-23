@@ -39,7 +39,7 @@ boolean IsExtraTurnP1, IsExtraTurnP2 = false;
 boolean IsAttackUpP1, IsAttackUpP2 = false;
 boolean IsCriticalHitP1, IsCriticalHitP2 = false;
 Token CToken;
-int mapheight, mapwidth, B;
+int mapheight, mapwidth, B, shield1, shield2;
 TBangunan TB;
 
 int main() {
@@ -439,7 +439,10 @@ int main() {
                 else if (allmax && playerTurn == 2) {
                     addSkill(&skill2, 3);
                 }
-
+                // kurangin shield
+                if (shield2 > 0){
+                    shield2 -= 1;
+                }
                 // mengganti turn
                 playerTurn ^= 3;
             }
