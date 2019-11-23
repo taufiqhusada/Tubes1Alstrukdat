@@ -17,7 +17,7 @@ boolean IsFullQueue (Queue Q) {
 
     return (TailQueue(Q) == MaxElQueue(Q));
 }
-int NbElmtQueue (Queue Q) {
+int NBElmtQueue (Queue Q) {
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
     int n;
     if (IsEmptyQueue(Q)) {
