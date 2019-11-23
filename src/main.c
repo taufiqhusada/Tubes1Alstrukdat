@@ -211,6 +211,13 @@ int main() {
                     if (NbBangunan(listBangunan(player1) == 10) {
                         addSkill(&skill2, 4);
                     }
+
+                    // Cek Menang
+                    if (NbBangunan(player2.listbangunan)==0){
+                        printf("SEMUA BANGUNAN PLAYER 2 SUDAH DIKUASAI PLAYER 1";
+                        printf("SELAMAT PLAYER 1 MENANG");
+                        isRunProgram = false;
+                    }
                 }
             }
             else if (CompareKata(CKataSTDIN,"LEVELUP")){
