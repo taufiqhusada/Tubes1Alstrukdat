@@ -194,7 +194,7 @@ void TulisDataBangunan(BANGUNAN B){
 /* I.S. Terdapat bangunan B */
 /* F.S. Tercetak data bangunan B di layar */
 /* Prekondisi: bangunan sudah dimiliki salah satu player */
-/* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level>
+/* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level> */
 /* Contoh : 1. Castle (1,15) 20 lv. 3 */
     /* KAMUS */
     /* ALGORITMA */
