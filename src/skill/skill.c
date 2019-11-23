@@ -143,7 +143,7 @@ void Barrage(Queue *Q, int Owner, TBangunan *T) { // Skill ID = 4
                // Remove 10 Army from Lawan
                 newArmy = nbPas(Bgn(*T,i)) - 10;
 
-                if (newArmy < 0) {
+                if (newArmy > 0) {
                     nbPas(Bgn(*T,i)) = newArmy;
                 }
                 else {
