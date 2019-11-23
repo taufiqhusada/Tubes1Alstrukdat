@@ -292,7 +292,7 @@ int main() {
                                 break;
 
                             case 5:
-                                Shield(&skill1, playerTurn, &TB);
+                                Shield(&skill1, &shield1);
                                 break;
                             
                             case 6:
@@ -332,7 +332,7 @@ int main() {
                                 break;
 
                             case 5:
-                                Shield(&skill2, playerTurn, &TB);
+                                Shield(&skill2, &shield2);
                                 break;
                             
                             case 6:
