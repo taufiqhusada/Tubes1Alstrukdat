@@ -31,6 +31,7 @@
 #include "skill/queue.h"
 #include "permainan/permainan.h"
 #include "skill/skill.h"
+#include "save.h"
 
 
 /* VARIABEL GLOBAL */
@@ -806,6 +807,9 @@ int main() {
                         }
                     }
                 }
+            }
+            else if (CompareKata(CKataSTDIN,"SAVE")){
+                save(B, mapheight, mapwidth, TB, skill1, skill2, shield1, shield2, player1, player2);
             }
             else if (CompareKata(CKataSTDIN,"EXIT")){
                 isRunProgram = false;
