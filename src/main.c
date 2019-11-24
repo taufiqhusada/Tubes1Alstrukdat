@@ -513,6 +513,7 @@ int main() {
                             
                             case 2:
                                 ExtraTurn(&skill1,&IsExtraTurnP1);
+				addSkill(&skill2, 7);
                                 break;
                             
                             case 3:
@@ -553,6 +554,7 @@ int main() {
                             
                             case 2:
                                 ExtraTurn(&skill2,&IsExtraTurnP1);
+				addSkill(&skill1, 7);
                                 break;
                             
                             case 3:
