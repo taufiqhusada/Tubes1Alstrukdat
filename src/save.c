@@ -105,4 +105,6 @@ counter shield pemain 1 dan 2, dan list bangunan yang dimiliki player 1 dan 2 ke
     printlistbangunan(n, TB, fp); /* Print list bangunan player 2 */
 
     fclose(fp);
+
+    printf("Game berhasil disave! \n");
 }
