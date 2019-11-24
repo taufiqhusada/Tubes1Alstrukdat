@@ -812,6 +812,7 @@ int main() {
             }
             else if (CompareKata(CKataSTDIN,"SAVE")){
                 save(B, mapheight, mapwidth, TB, skill1, skill2, shield1, shield2, player1, player2);
+		printf("Game berhasil disave! \n");
             }
             else if (CompareKata(CKataSTDIN,"EXIT")){
                 isRunProgram = false;
