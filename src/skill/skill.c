@@ -255,11 +255,11 @@ void PrintSkillList(Queue Q) {
         i = 1;
         j = HeadQueue(Q);
 
+	printf("Skill available : ");
+	    
         while (i <= queueLen) {
 
-            skillID = (Q).T[j];
-
-            printf("Skill available : ");
+            skillID = (Q).T[j];   
 
             if (i == queueLen) {
                 printf("%s\n", skillList[skillID]);
