@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 /* ********* Prototype ********* */
-boolean IsEmptyQueue (Queue Q) {
+boolean     IsEmptyQueue (Queue Q) {
 /* Mengirim true jika Q kosong: lihat definisi di atas */
     return ((HeadQueue(Q) == NilQueue) && (TailQueue(Q) == NilQueue));
 }
@@ -79,14 +79,14 @@ void DelQueue(Queue * Q, infotypeQueue * X) {
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
 
-    if (HeadQueue(*Q) == MaxElQueue(*Q)) {
-        *X = InfoHeadQueue(*Q);
-        HeadQueue(*Q) = 1;
-        InfoHeadQueue(*Q) = (*Q).T[1];
-    } 
-    else {
-        *X = InfoHeadQueue(*Q);
-        InfoHeadQueue(*Q) = (*Q).T[HeadQueue(*Q) + 1];
-        HeadQueue(*Q)++;      
-    }
+    (*X) = InfoHeadQueue(*Q);
+	if (HeadQueue(*Q) == TailQueue(*Q)){
+			HeadQueue(*Q) = NilQueue;
+			TailQueue(*Q) = NilQueue;
+	}
+	else{
+		HeadQueue(*Q)++;
+		if (HeadQueue(*Q) == MaxElQueue(*Q) + 1) HeadQueue(*Q) = 1;
+	}
+
 }

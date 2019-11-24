@@ -51,6 +51,10 @@ void PrintInfo (List L, TBangunan TB);
 /* Format pencetakan: <nomor> <nama bangunan> <koordinat> <jumlah pasukan> <level> */
 /* Contoh : 1. Castle (1,15) 20 lv. 3 */
 /* List tidak akan kosong karena jika list kosong, permainan berhenti */
+
+void PrintInfoAttack (List L, TBangunan TB, int isAlreadyAttacking[]);
+
+
 int NbBangunan (List L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
