@@ -80,8 +80,13 @@ void save (int B, int h, int w, TBangunan TB, Queue a, Queue b, int x, int y, Pl
 counter shield pemain 1 dan 2, dan list bangunan yang dimiliki player 1 dan 2 terdefinisi */
 /* F.S. print jumlah bangunan, tinggi peta, lebar peta, array bangunan (TB), queue skill pemain 1 dan 2, 
 counter shield pemain 1 dan 2, dan list bangunan yang dimiliki player 1 dan 2 ke file */ 
+    
+    char filename[100];
+    printf("Nama file yang diinginkan : ");
+    scanf("%s", &filename);
+
     FILE * fp;
-    fp = fopen ("savedata.txt", "w");
+    fp = fopen (filename, "w");
     
     fprintf(fp, "%d \n", B); /* Print jumlah bangunan */
 
