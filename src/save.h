@@ -19,15 +19,15 @@
 
 
 
-void printbangunan (TBangunan TB, int x);
+void printbangunan (TBangunan TB, int x, FILE* fp);
 /* I.S. array TB terdefinisi */
 /* F.S. print array TB ke file */
 
-void printskill(Queue Q);
+void printskill(Queue Q, FILE* fp);
 /* I.S. Queue skill terdefinisi */
 /* F.S. print queue skill ke file */ 
 
-void printlistbangunan(Player P, TBangunan TB);
+void printlistbangunan(Player P, TBangunan , FILE* fp);
 /* I.S. list bangunan yang dimiliki player terdefinisi */
 /* F.S. print list bangunan skill ke file */ 
 

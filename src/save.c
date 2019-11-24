@@ -18,13 +18,11 @@
 
 
 
-void printbangunan (TBangunan TB, int x){
+void printbangunan (TBangunan TB, int x, FILE* fp){
 /* I.S. array TB terdefinisi */
 /* F.S. print array TB ke file */
-    FILE * fp;
-    fp = fopen ("savedata.txt", "a");
     int i;
-	for (i = -1; i <= x; i++) {
+	for (i = 1; i <= x; i++) {
         fprintf(fp, "%c ", type(Bgn(TB,i)));
         fprintf(fp, "%d ", absis(Bgn(TB,i)));
         fprintf(fp, "%d ", ordinat(Bgn(TB,i)));
@@ -33,14 +31,11 @@ void printbangunan (TBangunan TB, int x){
         fprintf(fp, "%d ", owner(Bgn(TB,i)));
         fprintf(fp, " \n");
 	}
-    fclose(fp);
 }
 
-void printskill(Queue Q){
+void printskill(Queue Q, FILE* fp){
 /* I.S. Queue skill terdefinisi */
 /* F.S. print queue skill ke file */ 
-    FILE * fp;
-    fp = fopen ("savedata.txt", "a");
     int i, j, queueLen, skillID;
     queueLen = NBElmtQueue(Q);
     if (queueLen == 0) {
@@ -62,14 +57,11 @@ void printskill(Queue Q){
         }
         fprintf(fp, " \n");
     }
-    fclose(fp);
 }
 
-void printlistbangunan(Player P, TBangunan TB){
+void printlistbangunan(Player P, TBangunan TB, FILE* fp){
 /* I.S. list bangunan yang dimiliki player terdefinisi */
 /* F.S. print list bangunan skill ke file */ 
-    FILE * fp;
-    fp = fopen ("savedata.txt", "a");
     int i;
     adrBgn L;
     i = 1;
@@ -80,7 +72,6 @@ void printlistbangunan(Player P, TBangunan TB){
         L = Next(L);
     }
     fprintf(fp, " \n");
-    fclose(fp);
 }
 
 
@@ -97,16 +88,16 @@ counter shield pemain 1 dan 2, dan list bangunan yang dimiliki player 1 dan 2 ke
     fprintf(fp, "%d \n", h); /* Print mapheigth */
     fprintf(fp, "%d \n", w); /* Print mapwidth */
 
-    printbangunan(TB, B);  /* Print detail bangunan */
+    printbangunan(TB, B, fp);  /* Print detail bangunan */
 
-    printskill(a); /* Print queue skill player 1 */
-    printskill(b); /* Print queue skill player 2 */
+    printskill(a, fp); /* Print queue skill player 1 */
+    printskill(b, fp); /* Print queue skill player 2 */
 
     fprintf(fp, "%d \n", x); /* Print counter shield player 1 */
     fprintf(fp, "%d \n", y); /* Print counter shield player 2 */
 
-    printlistbangunan(m, TB); /* Print list bangunan player 1 */
-    printlistbangunan(n, TB); /* Print list bangunan player 2 */
+    printlistbangunan(m, TB, fp); /* Print list bangunan player 1 */
+    printlistbangunan(n, TB, fp); /* Print list bangunan player 2 */
 
     fclose(fp);
 }
