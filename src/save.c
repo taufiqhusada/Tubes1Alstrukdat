@@ -24,7 +24,7 @@ void printbangunan (TBangunan TB, int x){
     FILE * fp;
     fp = fopen ("savedata.txt", "a");
     int i;
-	for (i = 1; i <= x; i++) {
+	for (i = -1; i <= x; i++) {
         fprintf(fp, "%c ", type(Bgn(TB,i)));
         fprintf(fp, "%d ", absis(Bgn(TB,i)));
         fprintf(fp, "%d ", ordinat(Bgn(TB,i)));
